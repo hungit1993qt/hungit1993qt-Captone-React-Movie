@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postRegisterUser } from 'Slices/register'
 import { useNavigate } from 'react-router-dom'
 
+import Swal from 'sweetalert2'
+
 // Register fields: taiKhoan, matKhau, email, hoTen, soDt
 
 // validation schema
@@ -34,6 +36,7 @@ const schema = object({
 
 
 
+
 const Register = () => {
   const {
     register,
@@ -47,16 +50,31 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>()
   const onSubmit = (values: RegisterValue) => {
-    console.log(values)
-    dispatch(postRegisterUser(values))
-    if (getRegisterLocalstrage != null) {
-     navigate("/login");
-    }else{
-      console.log("khác null")
-    }
+    Swal.fire({
+      title: 'Bạn muốn đăng ký tài khoản với thông tin vừa nhập?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(postRegisterUser(values))
+        
+        
+      } else if (result.isDenied) {
+        Swal.fire('Tài khoản chưa được đăng ký', '', 'info')
+      }
+    })
+
 
 
   };
+  
 
   return (
     <main>
@@ -97,7 +115,7 @@ const Register = () => {
                   {errors.soDt && <span>{errors.soDt?.message}</span>}
                 </div>
                 <div className={styles["btn-gr"]}>
-                  <button  className={styles.btnLogin}>Đăng ký</button>
+                  <button className={styles.btnLogin}>Đăng ký</button>
                 </div>
 
               </form>

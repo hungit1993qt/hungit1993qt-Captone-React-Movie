@@ -9,6 +9,7 @@ import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from 'react'
 import { User } from 'Interface/user'
 import Loading from 'Pages/Loading/Loading'
+import Swal from 'sweetalert2'
 
 type Props = {};
 
@@ -52,9 +53,15 @@ const Login = (props: Props) => {
   if (auth) {
     if (getLocalStorage) {
       if (getLocalStorage.maLoaiNguoiDung === "QuanTri") {
-        
+
         dispatch(logOut());
-        alert("Sai loai tai khoan");
+
+        Swal.fire({
+          icon: 'error',
+          title: 'CÓ LỖI XẢY RA',
+          text: 'Sai loại tài khoản, vui lòng đăng nhập đúng tài khoản người dùng!',
+          footer: '<a href="register">Bạn chưa có tài khoản? tạo ngay</a>'
+        })
         navigate("/login")
 
       } else {
@@ -65,8 +72,8 @@ const Login = (props: Props) => {
   } else {
     <Navigate to="/login" />
   }
-  
-    
+
+
   return (
     <main>
       <article>
@@ -115,7 +122,7 @@ const Login = (props: Props) => {
                   <NavLink to="/register" className={styles.btnLoginNav}>Register</NavLink>
                 </div>
               </form>
-              
+
             </div>
           </div>
         </section>

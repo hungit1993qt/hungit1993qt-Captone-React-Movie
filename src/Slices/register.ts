@@ -3,6 +3,7 @@ import authAPI from '../Services/authAPI'
 import { RegisterValue } from 'Interface/register'
 import Swal from 'sweetalert2'
 
+
 interface State {
     RegisterValue: RegisterValue;
     message: string | null,
@@ -22,7 +23,6 @@ const initialState: State = {
     isLoading: false,
     error: null,
 };
-
 export const postRegisterUser = createAsyncThunk(
     "auth/Register",
     async (RegisterValue: RegisterValue) => {
@@ -34,7 +34,7 @@ export const postRegisterUser = createAsyncThunk(
                         icon: 'error',
                         title: 'CÓ LỖI XẢY RA',
                         text: `${data}!`,
-                        
+
                     })
 
                 } else {
@@ -46,6 +46,7 @@ export const postRegisterUser = createAsyncThunk(
                         showConfirmButton: false,
                         timer: 1500
                     })
+                    
                 }
             }
 

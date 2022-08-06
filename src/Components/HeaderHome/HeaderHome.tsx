@@ -5,7 +5,7 @@ import { User } from 'Interface/user'
 import Swal from 'sweetalert2'
 //tsrafce
 import { NavLink } from "react-router-dom";
-import React, { Component, useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import stylesHeader from 'Playground/SCSS/Header.module.scss'
 type Props = {};
 

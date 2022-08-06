@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { ListSeatBooking } from "Interface/listSeatBooking";
 import movieAPI from "Services/movieAPI";
 import { ListPay } from 'Interface/listPay'
+import Swal from 'sweetalert2'
 interface State {
     listSeatBooking: ListSeatBooking[],
     message: string,
@@ -42,7 +43,12 @@ const seatBookingSlice = createSlice({
 
             } else {
                 if (state.listSeatBooking.length > 4) {
-                    alert("Không được đặt quá 5 vé")
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'CÓ LỖI XẢY RA',
+                        text: 'Không được đặt quá 5 ghế!',
+                        
+                    })
                     state.listSeatBooking = [...state.listSeatBooking]
                 } else {
                     state.listSeatBooking = [...state.listSeatBooking, payload]

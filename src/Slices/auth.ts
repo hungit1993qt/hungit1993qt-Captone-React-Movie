@@ -4,7 +4,7 @@ import authAPI from '../Services/authAPI'
 import { User } from 'Interface/user'
 import Swal from 'sweetalert2'
 
-import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
+
 
 // const message: string | null = "Hello"
 // const number = message as string
@@ -47,7 +47,8 @@ export const postUserLogin = createAsyncThunk("auth/login", async (loginValueT: 
         title: 'Đăng nhập thành công!',
         showConfirmButton: false,
         timer: 1500
-      })
+      });
+      
     }
 
     //  chỗ này set lại data đi
