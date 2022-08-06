@@ -8,6 +8,7 @@ import stylesCheckout from 'Playground/SCSS/Checkout.module.scss'
 import { ListSeatBooking } from 'Interface/listSeatBooking'
 import { ListPay } from 'Interface/listPay'
 import { SeatBookingSlice, DeleteBooking, DeleteAllBooking, postSeatBooking } from 'Slices/listSeatBooking'
+import Swal from 'sweetalert2'
 
 
 
@@ -44,8 +45,29 @@ const Checkout = () => {
   };
   console.log(seatTicket)
   const handlePaySeat = (thongTinDatVe: ListPay) => {
-    dispatch(postSeatBooking(thongTinDatVe));
-    dispatch(getSeatTicket(+maLichChieu!))
+    Swal.fire({
+      title: 'Bạn chắc chắn muốn đặt?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(postSeatBooking(thongTinDatVe));
+        dispatch(getSeatTicket(+maLichChieu!))
+
+
+      } else if (result.isDenied) {
+        Swal.fire('Vui lòng lựa lại ghế', '', 'info')
+        dispatch(DeleteAllBooking());
+      }
+    })
+
   }
 
 

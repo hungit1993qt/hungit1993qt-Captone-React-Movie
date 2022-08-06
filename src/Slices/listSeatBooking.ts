@@ -47,7 +47,7 @@ const seatBookingSlice = createSlice({
                         icon: 'error',
                         title: 'CÓ LỖI XẢY RA',
                         text: 'Không được đặt quá 5 ghế!',
-                        
+
                     })
                     state.listSeatBooking = [...state.listSeatBooking]
                 } else {
@@ -70,13 +70,19 @@ const seatBookingSlice = createSlice({
             state.isLoading = false;
             state.message = payload
             state.listSeatBooking = []
-            alert(state.message)
-            
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Đặt vé thành công!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
         });
         builder.addCase(postSeatBooking.rejected, (state, { error }) => {
             state.isLoading = false;
             state.error = error as any;
-            
+
         });
     },
 
