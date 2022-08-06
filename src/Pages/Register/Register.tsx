@@ -50,8 +50,9 @@ const Register = () => {
     console.log(values)
     dispatch(postRegisterUser(values))
     if (getRegisterLocalstrage != null) {
-      navigate(-1);
-      localStorage.removeItem("registerUser");
+     navigate("/login");
+    }else{
+      console.log("khác null")
     }
 
 

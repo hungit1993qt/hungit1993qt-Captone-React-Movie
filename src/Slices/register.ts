@@ -34,7 +34,7 @@ export const postRegisterUser = createAsyncThunk(
                         icon: 'error',
                         title: 'CÓ LỖI XẢY RA',
                         text: `${data}!`,
-                        footer: '<a href="register">Bạn chưa có tài khoản? tạo ngay</a>'
+                        
                     })
 
                 } else {
