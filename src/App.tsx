@@ -24,7 +24,7 @@ const About = lazy(() => import("Pages/About/About"));
 const Checkout = lazy(() => import("Pages/Checkout/Checkout"));
 const AddMovie = lazy(() => import("Pages/AddMovie/AddMovie"));
 const MovieDetail = lazy(() => import("Pages/HomePage/MovieDetail"));
-const InforBooked = lazy(() => import("Pages/Checkout/infomationrBooked"));
+const InforBooked = lazy(() => import("Pages/Checkout/Booked"));
 function App() {
   return (
     <ErrorBoundary>

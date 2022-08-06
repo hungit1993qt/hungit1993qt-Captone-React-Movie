@@ -7,6 +7,7 @@ import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
 import { getMovieShowTime } from "Slices/showTime";
 import styleDetail from 'Playground/SCSS/movieDetails.module.scss'
+import Swal from 'sweetalert2';
 
 
 const MovieDetail = () => {
@@ -33,7 +34,7 @@ const MovieDetail = () => {
             <Loading />
         );
     }
-    
+
 
     if (error) {
         // TODO: Error component
@@ -46,8 +47,26 @@ const MovieDetail = () => {
     const tenPhim = showtimes.tenPhim;
     const moTa = movies.moTa;
     const hinhAnh = showtimes.hinhAnh;
-    const maPhims = showtimes.maPhim
+    const maPhims = showtimes.maPhim;
+    const Trainer = showtimes.trailer;
+    const train = (Trainer: string) => {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+        var match = Trainer.match(regExp);
+        return (match && match[7].length == 11) ? match[7] : false;
+    }
+    const idTrainer = train(Trainer);
+    const showTrainer = () => {
+        Swal.fire({
+            title: `<strong>${tenPhim} Trainer</strong>`,
 
+            html:
+                `<iframe width="560" height="315" src="https://www.youtube.com/embed/${idTrainer}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+
+            width: 700,
+            focusConfirm: false,
+
+        })
+    }
 
     return (
         <div>
@@ -55,7 +74,9 @@ const MovieDetail = () => {
                 <div className="container">
                     <figure className="movie-detail-banner">
                         <img src={hinhAnh} alt={tenPhim} />
-                        <button className="play-btn">
+                        <button onClick={() => showTrainer()} className="play-btn" >
+
+
                         </button>
                     </figure>
                     <div className="movie-detail-content">
@@ -87,9 +108,9 @@ const MovieDetail = () => {
                             {moTa}
                         </p>
                         <div className="details-actions">
-                            <button className="share">
-                                <span>Share</span>
-                            </button>
+
+                            <button className="btn btn-primary" onClick={() => showTrainer()}><span>Xem Trainler</span></button>
+
                             <button onClick={() => setOpent(!opent)} className="btn btn-primary" >
                                 <span>Mua vé</span>
                             </button>

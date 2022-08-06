@@ -13,7 +13,7 @@ const authAPI = {
         return axiosClient.post("QuanLyNguoiDung/DangKy", registerValue);
     },
     getBookedUser: () => {
-        return axiosClient.get("QuanLyNguoiDung/ThongTinTaiKhoan");
+        return axiosClient.post("QuanLyNguoiDung/ThongTinTaiKhoan");
     },
 
 }

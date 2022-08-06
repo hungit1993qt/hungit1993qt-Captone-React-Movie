@@ -34,7 +34,7 @@ const HeaderHome = (props: Props) => {
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
         </NavLink>
         <div className="header-actions">
-          <h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3>
+        <NavLink to={"/booked"}><h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3></NavLink>
           <NavLink to={auth ? "/" : "login"}>
             <button
               onClick={() => { auth ? Logout() : Login() }}
