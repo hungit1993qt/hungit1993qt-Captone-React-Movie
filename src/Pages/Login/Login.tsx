@@ -112,9 +112,10 @@ const Login = (props: Props) => {
                 {errors.matKhau && <span className="">{errors.matKhau?.message}</span>}
                 <div className={styles["btn-gr"]}>
                   <button className={styles.btnLogin}>Log In</button>
-                  <button onClick={() => navigate('/register')} className={styles.btnLogin}>Register</button>
+                  <NavLink to="/register" className={styles.btnLoginNav}>Register</NavLink>
                 </div>
               </form>
+              
             </div>
           </div>
         </section>

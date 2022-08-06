@@ -2,7 +2,6 @@ import { RootState, AppDispatch} from "configStore";
 import { useSelector,useDispatch } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
 import {User} from 'Interface/user'
-import {logOut} from 'Slices/auth'
 
 interface Props {
   children: JSX.Element;

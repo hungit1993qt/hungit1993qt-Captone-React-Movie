@@ -56,21 +56,26 @@ export const postUserLogin = createAsyncThunk("auth/login", async (loginValueT: 
     throw error;
   }
 });
-export const logOut = createAsyncThunk("auth/logOut", () => {
-  try {
-    const data = localStorage.clear();
-    
-    return data
-  } catch (error) {
-    throw error
-  }
-})
+
 
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logOut: (state) => {
+      localStorage.clear();
+      state.auth = null;
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Đăng xuất thành công!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(postUserLogin.pending, (state) => {
       state.isLoading = true;
@@ -83,12 +88,9 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = error as any;
     });
-    builder.addCase(logOut.fulfilled, (state, { payload }) => {
-      state.auth = null
-      
-    })
+
 
   },
 });
-
+export const { logOut } = authSlice.actions;
 export default authSlice.reducer;

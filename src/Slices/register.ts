@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 
 interface State {
     RegisterValue: RegisterValue;
-    message:string | null,
+    message: string | null,
     isLoading: boolean;
     error: string | null;
 };
@@ -18,7 +18,7 @@ const initialState: State = {
         hoTen: null,
         maNhom: null,
     },
-    message:null,
+    message: null,
     isLoading: false,
     error: null,
 };
@@ -28,17 +28,27 @@ export const postRegisterUser = createAsyncThunk(
     async (RegisterValue: RegisterValue) => {
         try {
             const data = await authAPI.postRegisterUser(RegisterValue);
-            if (!data.email) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'CÓ LỖI XẢY RA',
-                    text: `${data}`,
-                    footer: '<a href="register">Bạn chưa có tài khoản? tạo ngay</a>'
-                  })
+            if (data) {
+                if (!data.email) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'CÓ LỖI XẢY RA',
+                        text: `${data}!`,
+                        footer: '<a href="register">Bạn chưa có tài khoản? tạo ngay</a>'
+                    })
 
-            } else {
-                localStorage.setItem("registerUser", JSON.stringify(data));
+                } else {
+                    localStorage.setItem("registerUser", JSON.stringify(data));
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Đăng ký thành công!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
             }
+
             return data
 
         } catch (error) {

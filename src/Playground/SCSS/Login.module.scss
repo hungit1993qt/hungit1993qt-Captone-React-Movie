@@ -108,3 +108,18 @@ input{
 .btn-gr{
     margin-top: 30px;
 }
+.btnLoginNav{
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--citrine);
+    }
+}

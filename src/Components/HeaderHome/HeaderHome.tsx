@@ -18,14 +18,11 @@ const HeaderHome = (props: Props) => {
   const dispatch = useDispatch<AppDispatch>()
   const Logout = () => {
     dispatch(logOut());
-    
-    
-
   }
   const Login = () => {
 
   }
-  
+
 
 
   const [Active, setActive] = useState(false);
@@ -40,8 +37,7 @@ const HeaderHome = (props: Props) => {
           <h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3>
           <NavLink to={auth ? "/" : "login"}>
             <button
-
-              onClick={() => Logout()}
+              onClick={() => { auth ? Logout() : Login() }}
               className="btn btn-primary">
               {getLocalStorage ? "LOG OUT" : "SIGN IN"}
             </button>

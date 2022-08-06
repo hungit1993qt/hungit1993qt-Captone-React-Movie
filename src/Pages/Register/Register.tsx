@@ -40,7 +40,6 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterValue>({
-    mode: "onTouched",
     // cấu hình validation bằng yup schema
     resolver: yupResolver(schema),
   });
@@ -97,7 +96,7 @@ const Register = () => {
                   {errors.soDt && <span>{errors.soDt?.message}</span>}
                 </div>
                 <div className={styles["btn-gr"]}>
-                  <button className={styles.btnLogin}>Đăng ký</button>
+                  <button  className={styles.btnLogin}>Đăng ký</button>
                 </div>
 
               </form>
