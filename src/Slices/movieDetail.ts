@@ -9,19 +9,26 @@ interface State {
 
 const initialState: State = {
   movies: {
-    maPhim:null,
-    tenPhim: "",
-    biDanh: "",
-    trailer: "",
-    hinhAnh: "",
-    moTa: "",
-    maNhom: "",
-    hot: false,
-    dangChieu: false,
-    sapChieu: false,
-    ngayKhoiChieu: "",
-    danhGia: null,
-  } ,
+    currentPage: null,
+    count: null,
+    totalPages: null,
+    totalCount: null,
+    items: [{
+      maPhim: null,
+      tenPhim: null,
+      biDanh: null,
+      trailer: null,
+      hinhAnh: null,
+      moTa: null,
+      maNhom: null,
+      hot: null,
+      dangChieu: null,
+      sapChieu: null,
+      ngayKhoiChieu: null,
+      danhGia: null,
+
+    }]
+  },
   isLoading: false,
   error: null,
 };
@@ -55,7 +62,7 @@ const movieDetailSlice = createSlice({
       state.error = error as any;
     });
   },
-  
+
 });
 // export actions
 

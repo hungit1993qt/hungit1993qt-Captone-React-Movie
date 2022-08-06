@@ -45,7 +45,7 @@ const MovieDetail = () => {
     const date = showtimes.ngayKhoiChieu;
     const biDanh = showtimes.biDanh;
     const tenPhim = showtimes.tenPhim;
-    const moTa = movies.moTa;
+    const moTa = showtimes.moTa;
     const hinhAnh = showtimes.hinhAnh;
     const maPhims = showtimes.maPhim;
     const Trainer = showtimes.trailer;

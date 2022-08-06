@@ -5,6 +5,7 @@ import { getMovieShowing } from "Slices/movie";
 import { Link, useNavigate } from 'react-router-dom'
 import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
+import styles from 'Playground/SCSS/MovieShowing.module.scss'
 
 
 const MovieShowing = () => {
@@ -18,9 +19,11 @@ const MovieShowing = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(getMovieShowing());
+    dispatch(getMovieShowing(1));
   }, []);
-
+const ShowItemByNumber = (number:number)=>{
+  dispatch(getMovieShowing(number));
+}
 
   if (isLoading) {
     // TODO: Loading component
@@ -33,8 +36,13 @@ const MovieShowing = () => {
     // TODO: Error component
     return <h1>{error}</h1>
   }
+  let stt = []
+  for (let index = 0; index < movies.totalPages!; index++) {
+    stt[index] = index + 1;
 
-  
+  }
+  console.log(stt)
+
   return (
 
     <main>
@@ -58,7 +66,7 @@ const MovieShowing = () => {
               </li>
             </ul>
             <ul className="movies-list">
-              {movies.map((movie: any) => {
+              {movies.items.map((movie: any) => {
 
                 Moment.locale('en');
                 const date = movie.ngayKhoiChieu
@@ -87,15 +95,29 @@ const MovieShowing = () => {
                         </div>
                       </div>
                     </div>
+
                   </li>
+
                 );
               })}
 
             </ul>
+            <ul className={styles["ul-page"]}>
+
+              {stt.map((PageNumber, index) => {
+                return ( <li key={PageNumber} className={styles["li-page"]}> <button className={styles["btn-page"]} onClick={()=>ShowItemByNumber(PageNumber)}>{PageNumber}</button></li>)
+               
+              })}
+
+            </ul>
+
+
           </div>
+
         </section>
 
       </article>
+
     </main>
   );
 };

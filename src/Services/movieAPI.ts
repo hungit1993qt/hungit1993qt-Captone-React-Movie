@@ -3,11 +3,13 @@ import { ListPay } from 'Interface/listPay'
 import axiosClient from "./axiosClient";
 
 const movieAPI = {
-  getMovieShowing: () => {
+  getMovieShowing: (numberPgae: number) => {
     // Khai báo hàm call API dữ liệu trả về là Movie[]
-    return axiosClient.get<Movie[]>("QuanLyPhim/LayDanhSachPhim", {
+    return axiosClient.get("QuanLyPhim/LayDanhSachPhimPhanTrang", {
       params: {
-        maNhom: "GP02"
+        maNhom: "GP02",
+        soTrang: numberPgae,
+        soPhanTuTrenTrang: 8,
       }
     });
   },
@@ -36,8 +38,8 @@ const movieAPI = {
       }
     })
   },
-  postSeatBooking: (thongTinDatVe:ListPay) => {
-    return axiosClient.post("QuanLyDatVe/DatVe",thongTinDatVe )
+  postSeatBooking: (thongTinDatVe: ListPay) => {
+    return axiosClient.post("QuanLyDatVe/DatVe", thongTinDatVe)
   },
 
   // Và những còn lại liên quan đến movie...

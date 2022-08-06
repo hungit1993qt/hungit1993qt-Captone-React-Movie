@@ -3,22 +3,42 @@ import { number } from "yup";
 import { Movie } from "../Interface/movie";
 import movieAPI from "../Services/movieAPI";
 interface State {
-  movies: Movie[];
+  movies: Movie;
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: State = {
-  movies: [],
+  movies: {
+    currentPage: null,
+    count: null,
+    totalPages: null,
+    totalCount: null,
+    items: [{
+      maPhim: null,
+      tenPhim: null,
+      biDanh: null,
+      trailer: null,
+      hinhAnh: null,
+      moTa: null,
+      maNhom: null,
+      hot: null,
+      dangChieu: null,
+      sapChieu: null,
+      ngayKhoiChieu: null,
+      danhGia: null,
+
+    }]
+  },
   isLoading: false,
   error: null,
 };
 // thunk actions
 export const getMovieShowing = createAsyncThunk(
   "movie/getMovieShowing",
-  async () => {
+  async (numberPgae: number) => {
     try {
-      const data = await movieAPI.getMovieShowing();
+      const data = await movieAPI.getMovieShowing(numberPgae);
       return data;
     } catch (error) {
       throw error
