@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import styles from 'Playground/SCSS/Booked.module.scss'
 import Moment from 'moment';
 import { getMovieDetails } from "Slices/movieDetail";
-
+import Loading from "Pages/Loading/Loading";
 const Booked = () => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -16,10 +16,11 @@ const Booked = () => {
   }, []);
   const { inforBookeds, isLoading, error } = useSelector(
     (state: RootState) => state.inforBooked
-  )
+  );
+
   const { movies } = useSelector(
     (state: RootState) => state.detail
-  )
+  );
   console.log(movies)
   const showMoreInforFilm = (tenPhim: string, hinhAnh: string, ngayDat: string, giaVe: number, thoiLuong: number) => {
     Swal.fire({
@@ -45,14 +46,23 @@ const Booked = () => {
     Ngày Chiếu: ${Moment(ngayChieu).format('hh : mm DD:MM:YYYY')}
     `)
   }
+  if (isLoading) {
+    // TODO: Loading component
+    return (
+      <Loading />
+    );
+  }
+
+  if (error) {
+    // TODO: Error component
+    return <h1>{error}</h1>
+  }
   return (
     <div>
       <section className="service">
         <div>
           <h1><span className={styles["blue"]}></span>DANH SÁCH ĐÃ ĐẶT VÉ<span className={styles["blue"]}></span> </h1>
-
         </div>
-
         <table className={styles['container']}>
           <thead>
             <tr >
@@ -64,7 +74,7 @@ const Booked = () => {
             {/* {Moment(infor.ngayDat).format('DD-MM-YYYY')} */}
             {inforBookeds.thongTinDatVe?.map((film) => {
               return (
-                <tr key={film.maVe}>
+                <tr className={styles['trboder']} key={film.maVe}>
                   <td><button className={styles['btn-Show-More-Infor']} onClick={() => { showMoreInforFilm(film.tenPhim!, film.hinhAnh!, film.ngayDat!, film.giaVe!, film.thoiLuongPhim!) }} >{film.tenPhim}</button></td>
                   <td > {film.danhSachGhe.map((ghe) => {
                     return (<button key={ghe.maGhe} className={styles['btn-Show-More-Infor-Seat']} onClick={() => { showMoreInforSeat(ghe.tenGhe!, ghe.tenHeThongRap!, ghe.tenRap!, film.ngayDat!) }} >{ghe.tenGhe}</button>)

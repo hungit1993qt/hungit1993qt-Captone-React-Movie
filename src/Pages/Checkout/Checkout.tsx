@@ -9,6 +9,7 @@ import { ListSeatBooking } from 'Interface/listSeatBooking'
 import { ListPay } from 'Interface/listPay'
 import { SeatBookingSlice, DeleteBooking, DeleteAllBooking, postSeatBooking } from 'Slices/listSeatBooking'
 import Swal from 'sweetalert2'
+import Loading from "Pages/Loading/Loading";
 
 
 
@@ -19,7 +20,7 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(getSeatTicket(+maLichChieu!));
   }, []);
-  const { seatTicket } = useSelector(
+  const { seatTicket, isLoading, error } = useSelector(
     (state: RootState) => state.seatTicket
   );
   const { listSeatBooking, message } = useSelector(
@@ -81,7 +82,17 @@ const Checkout = () => {
   }
 
 
+  if (isLoading) {
+    // TODO: Loading component
+    return (
+      <Loading />
+    );
+  }
 
+  if (error) {
+    // TODO: Error component
+    return <h1>{error}</h1>
+  }
 
   return (
     <div>

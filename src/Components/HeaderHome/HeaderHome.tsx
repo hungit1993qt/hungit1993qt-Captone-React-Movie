@@ -64,7 +64,7 @@ const HeaderHome = (props: Props) => {
           </div>
           <ul className="navbar-list">
             <li className={stylesHeader["li-submenu"]}>
-              <NavLink to={"contact"} className={({ isActive }) =>
+              <NavLink to={"booked"} className={({ isActive }) =>
                 isActive ? "navbar-link activeLink" : "navbar-link"
               }><h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3></NavLink>
             </li>
