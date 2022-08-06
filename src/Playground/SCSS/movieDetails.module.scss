@@ -1,0 +1,95 @@
+.showtime-close {
+    background: url("../images/tv-series-bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-block: var(--section-padding);
+    display: none;
+}
+
+.showtime-Opent{
+    background: url("../images/tv-series-bg.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-block: var(--section-padding);
+    display: block;
+}
+
+.cinima {
+    background: url(../images/movie-detail-bg.png);
+}
+
+.cinima-img {
+    width: 47px;
+    height: 47px;
+    margin: 15px;
+    display: inline-block;
+}
+
+.cinima-bg {
+
+    display: flex;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-bottom: 1px solid rgb(255, 0, 0);
+
+}
+
+.cinima-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.cinima-cRC {
+    display: flex;
+    align-content: stretch;
+    justify-content: flex-start;
+    align-items: center;
+    border-left: 1px solid rgb(255, 0, 0);
+
+    h3 {
+        font-size: var(--fs-11);
+        color: var(--white);
+
+        a {
+            display: inline-block;
+            color: red;
+        }
+    }
+
+    h2 {
+        font-size: var(--fs-5);
+        color: var(--citrine);
+    }
+
+    .timeshow {
+        display: block;
+        border: 2px solid var(--citrine);
+        color: var(--white);
+        align-items: center;
+        padding: 0 10px;
+
+        &:hover {
+            background-color: var(--citrine);
+            color: var(--black);
+        }
+    }
+
+    .cinima-cRc-space {
+        margin: 0 20px;
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+.showtime-subtitle {
+    color: var(--citrine);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    text-align: center;
+}

@@ -1,0 +1,106 @@
+.btn-ticket {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-color: var(--citrine);
+    border-radius: 10px;
+}
+
+.title-Film {
+    color: var(--citrine);
+    border-bottom: 1px dashed hsla(0, 0%, 100%, 0.1);
+
+
+}
+
+.title-date {
+    color: var(--citrine);
+    font-size: 15px;
+}
+
+.detail-cinimax-title {
+    display: inline;
+    color: var(--citrine);
+}
+
+.detail-cinimax {
+    display: inline;
+
+}
+
+.list-seat {
+    display: flex;
+    flex-wrap: wrap;
+    //justify-content: space-between;
+    max-width: 1280px;
+}
+
+.descri-seat {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .seat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+            display: inline-block;
+            color: var(--white);
+            font-size: 10px;
+            text-align: center;
+        }
+    }
+}
+
+.btn-ticket.Vip.true {
+    cursor: not-allowed;
+    background-color: red;
+    opacity: 0.7;
+}
+
+.btn-ticket.Thuong {
+    background-color: var(--light-gray);
+}
+
+.btn-ticket.Thuong.true {
+    background-color: var(--light-gray);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.delete-Booking {
+    color: red;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.btn-primary {
+    display: block;
+    --fs-11: 14px;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    background: var(--rich-black-fogra-29);
+    border: 2px solid var(--citrine);
+    color: var(--white);
+    border-radius: 50px;
+    margin-top: 20px;
+    text-align: center;
+    display: inline-block;
+
+    &:hover {
+        background: var(--citrine);
+        color: var(--rich-black-fogra-29);
+        ;
+    }
+}
+
+
+@media (max-width: 550px) {
+    .list-seat {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

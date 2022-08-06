@@ -1,0 +1,158 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "configStore";
+import { getMovieDetails } from "Slices/movieDetail";
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import Moment from 'moment';
+import Loading from "Pages/Loading/Loading";
+import { getMovieShowTime } from "Slices/showTime";
+import styleDetail from 'Playground/SCSS/movieDetails.module.scss'
+
+
+const MovieDetail = () => {
+    const navigate = useNavigate();
+    const checkLogin = (maLichChieuId: number) => {
+        navigate(`/checkout/${maLichChieuId}`);
+    }
+    const [opent, setOpent] = useState(false);
+    const { maPhim } = useParams()
+    const { movies, isLoading, error } = useSelector(
+        (state: RootState) => state.detail
+    );
+    const { showtimes } = useSelector(
+        (state: RootState) => state.showtime
+    );
+    const dispatch = useDispatch<AppDispatch>();
+    useEffect(() => {
+        dispatch(getMovieDetails(+maPhim!));
+        dispatch(getMovieShowTime(+maPhim!))
+    }, []);
+    if (isLoading) {
+        // TODO: Loading component
+        return (
+            <Loading />
+        );
+    }
+    
+
+    if (error) {
+        // TODO: Error component
+        return <h1>{error}</h1>;
+    }
+    Moment.locale('en');
+    const time = showtimes.heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong;
+    const date = showtimes.ngayKhoiChieu;
+    const biDanh = showtimes.biDanh;
+    const tenPhim = showtimes.tenPhim;
+    const moTa = movies.moTa;
+    const hinhAnh = showtimes.hinhAnh;
+    const maPhims = showtimes.maPhim
+
+
+    return (
+        <div>
+            <section className="movie-detail">
+                <div className="container">
+                    <figure className="movie-detail-banner">
+                        <img src={hinhAnh} alt={tenPhim} />
+                        <button className="play-btn">
+                        </button>
+                    </figure>
+                    <div className="movie-detail-content">
+                        <p className="detail-subtitle">{biDanh}</p>
+                        <h1 key={maPhims} className="h1 detail-title">
+                            {tenPhim}
+                        </h1>
+                        <div className="meta-wrapper">
+                            <div className="badge-wrapper">
+                                <div className="badge badge-fill">{maPhim}</div>
+                                <div className="badge badge-outline">HD</div>
+                            </div>
+                            <div className="ganre-wrapper">
+                                <a href="#">Comedy,</a>
+                                <a href="#">Action,</a>
+                                <a href="#">Adventure,</a>
+                                <a href="#">Science Fiction</a>
+                            </div>
+                            <div className="date-time">
+                                <div>
+                                    <time>{Moment(date).format('DD-MM-YYYY')}</time>
+                                </div>
+                                <div>
+                                    <time>{time}p</time>
+                                </div>
+                            </div>
+                        </div>
+                        <p className="storyline">
+                            {moTa}
+                        </p>
+                        <div className="details-actions">
+                            <button className="share">
+                                <span>Share</span>
+                            </button>
+                            <button onClick={() => setOpent(!opent)} className="btn btn-primary" >
+                                <span>Mua vé</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section className={opent ? styleDetail["showtime-Opent"] : styleDetail["showtime-close"]}>
+                <div className="container">
+                    <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
+                    <p className={styleDetail["showtime-subtitle"]}>" {tenPhim}"</p>
+                    <div className="detail-showtime">
+                        <div className={styleDetail["cinima"]}>
+                            <ul >
+                                {showtimes.heThongRapChieu.map((heThongRapChieu) => {
+                                    return (
+                                        <li className={styleDetail["cinima-bg"]} key={heThongRapChieu.maHeThongRap}>
+                                            <img className={styleDetail["cinima-img"]} src={heThongRapChieu.logo} alt={heThongRapChieu.tenHeThongRap} />
+                                            <div className={styleDetail["cinima-list"]}>
+                                                {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
+                                                    return (
+                                                        <div key={cumRapChieu.maCumRap} className={styleDetail["cinima-cRC"]}>
+                                                            <img className={styleDetail["cinima-img"]} src={cumRapChieu.hinhAnh} alt={cumRapChieu.tenCumRap} />
+                                                            <div >
+                                                                <h2 >{cumRapChieu.tenCumRap}</h2>
+                                                                <h3>{cumRapChieu.diaChi} <a href="#">[Bản đồ]</a></h3>
+
+                                                            </div>
+                                                            <div className={styleDetail["cinima-cRc-space"]}>
+                                                                {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
+
+                                                                    return (
+
+                                                                        <div key={lichChieuPhim.maLichChieu}>
+                                                                            <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshow"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                                        </div>
+                                                                    )
+                                                                })}
+                                                            </div>
+                                                        </div>
+                                                    );
+                                                })}
+                                            </div>
+                                        </li>
+                                    );
+                                })}
+
+                            </ul>
+
+
+
+
+                        </div>
+                        <div className="showtime-detail"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+
+
+    )
+}
+
+export default MovieDetail
