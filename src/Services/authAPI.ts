@@ -1,6 +1,6 @@
 import { LoginValues } from '../Interface/loginValue';
 import axiosClient from './axiosClient';
-import {RegisterValue} from 'Interface/register'
+import { RegisterValue } from 'Interface/register'
 
 
 const authAPI = {
@@ -9,13 +9,14 @@ const authAPI = {
             taiKhoan, matKhau
         });
     },
-    postRegisterUser:(registerValue:RegisterValue) =>{
-        return axiosClient.post("QuanLyNguoiDung/DangKy",registerValue)
-    }
+    postRegisterUser: (registerValue: RegisterValue) => {
+        return axiosClient.post("QuanLyNguoiDung/DangKy", registerValue);
+    },
+    getBookedUser: () => {
+        return axiosClient.get("QuanLyNguoiDung/ThongTinTaiKhoan");
+    },
+
 }
 
 export default authAPI;
 
-
-
-// data  trả về có phải là loginValues đâu

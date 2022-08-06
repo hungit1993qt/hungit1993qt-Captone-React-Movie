@@ -7,6 +7,8 @@ import seatTicket from './Slices/seatTicket'
 import listSeatBooking from './Slices/listSeatBooking'
 import message from './Slices/listSeatBooking'
 import RegisterValue from './Slices/register'
+import inforBooked from './Slices/inforBooked'
+
 
 
 
@@ -20,6 +22,7 @@ const store = configureStore({
     listSeatBooking,
     message,
     RegisterValue,
+    inforBooked,
   },
 });
 

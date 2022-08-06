@@ -24,6 +24,7 @@ const About = lazy(() => import("Pages/About/About"));
 const Checkout = lazy(() => import("Pages/Checkout/Checkout"));
 const AddMovie = lazy(() => import("Pages/AddMovie/AddMovie"));
 const MovieDetail = lazy(() => import("Pages/HomePage/MovieDetail"));
+const InforBooked = lazy(() => import("Pages/Checkout/infomationrBooked"));
 function App() {
   return (
     <ErrorBoundary>
@@ -34,23 +35,23 @@ function App() {
             <Route path="" element={<HomeTemplate />}>
               <Route path="contact" element={<Contact />} />
               <Route path="login" element={<Login />} />
-              
+
               <Route path="register" element={<Register />} />
               {/* <Route path="about" element={<About />} /> */}
-              <Route path="movie-detail/:maPhim" element={<MovieDetail/>} />
+              <Route path="movie-detail/:maPhim" element={<MovieDetail />} />
               <Route
                 path="checkout/:maLichChieu"
                 element={
                   <ProtectedRoute>
-                    <Checkout />                    
+                    <Checkout />
                   </ProtectedRoute>
                 }
               />
               <Route
-                path="about"
+                path="booked"
                 element={
                   <ProtectedRoute>
-                    <About />                    
+                    <InforBooked />
                   </ProtectedRoute>
                 }
               />

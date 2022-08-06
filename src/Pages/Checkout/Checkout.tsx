@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from 'configStore'
 import { getSeatTicket } from 'Slices/seatTicket'
-import { useParams } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate, useParams } from 'react-router-dom'
 import stylesCheckout from 'Playground/SCSS/Checkout.module.scss'
 import { ListSeatBooking } from 'Interface/listSeatBooking'
 import { ListPay } from 'Interface/listPay'
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2'
 
 
 const Checkout = () => {
-
+  const navigate = useNavigate();
   const { maLichChieu } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -38,37 +38,49 @@ const Checkout = () => {
     dispatch(DeleteAllBooking());
   }
 
-
   const thongTinDatVe: ListPay = {
     maLichChieu: +maLichChieu!,
     danhSachVe: listSeatBooking,
   };
-  console.log(seatTicket)
+
   const handlePaySeat = (thongTinDatVe: ListPay) => {
-    Swal.fire({
-      title: 'Bạn chắc chắn muốn đặt?',
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(postSeatBooking(thongTinDatVe));
-        dispatch(getSeatTicket(+maLichChieu!))
+    if (thongTinDatVe.danhSachVe.length !== 0) {
+      Swal.fire({
+        title: 'Bạn chắc chắn muốn đặt?',
+        showDenyButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(postSeatBooking(thongTinDatVe));
+          dispatch(getSeatTicket(+maLichChieu!))
+          navigate("/booked")
 
 
-      } else if (result.isDenied) {
-        Swal.fire('Vui lòng lựa lại ghế', '', 'info')
-        dispatch(DeleteAllBooking());
-      }
-    })
+        } else if (result.isDenied) {
+          Swal.fire('Vui lòng lựa lại ghế', '', 'info')
+          dispatch(DeleteAllBooking());
+        }
+      })
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'CÓ LỖI XẢY RA',
+        text: 'Bạn chưa đặt vé, vui lòng đặt vé!',
+
+      })
+    }
+
 
   }
+
+
 
 
   return (
