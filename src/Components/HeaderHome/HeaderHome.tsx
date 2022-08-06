@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { RootState, AppDispatch } from "configStore";
 import { logOut } from 'Slices/auth'
 import { User } from 'Interface/user'
+import Swal from 'sweetalert2'
 //tsrafce
 import { NavLink } from "react-router-dom";
 import React, { Component, useEffect, useState } from 'react'
@@ -16,12 +17,15 @@ const HeaderHome = (props: Props) => {
   const getLocalStorage: User = JSON.parse(localStorage.getItem("user") as string) || null;
   const dispatch = useDispatch<AppDispatch>()
   const Logout = () => {
-    dispatch(logOut())
+    dispatch(logOut());
+    
+    
 
   }
   const Login = () => {
 
   }
+  
 
 
   const [Active, setActive] = useState(false);

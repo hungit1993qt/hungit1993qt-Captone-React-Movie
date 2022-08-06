@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authAPI from '../Services/authAPI'
 import { RegisterValue } from 'Interface/register'
+import Swal from 'sweetalert2'
 
 interface State {
     RegisterValue: RegisterValue;
@@ -28,7 +29,12 @@ export const postRegisterUser = createAsyncThunk(
         try {
             const data = await authAPI.postRegisterUser(RegisterValue);
             if (!data.email) {
-                alert(data)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'CÓ LỖI XẢY RA',
+                    text: `${data}`,
+                    footer: '<a href="register">Bạn chưa có tài khoản? tạo ngay</a>'
+                  })
 
             } else {
                 localStorage.setItem("registerUser", JSON.stringify(data));
@@ -55,7 +61,6 @@ const authRegisterSlices = createSlice({
         builder.addCase(postRegisterUser.rejected, (state, { error }) => {
             state.isLoading = false
             state.error = error as any
-            console.log(error)
         })
     }
 })

@@ -1571,9 +1571,7 @@ body.active {
     .movies-list {
         grid-template-columns: repeat(3, 1fr);
     }
-    .li-submenu{
-        display: inline-block;
-    }
+    
 
 
     /**

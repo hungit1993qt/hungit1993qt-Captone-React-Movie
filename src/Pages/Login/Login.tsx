@@ -8,7 +8,8 @@ import { AppDispatch, RootState } from "configStore";
 import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from 'react'
 import { User } from 'Interface/user'
-import Loading from 'Pages/Loading/Loading';
+import Loading from 'Pages/Loading/Loading'
+
 type Props = {};
 
 const Login = (props: Props) => {
@@ -49,20 +50,23 @@ const Login = (props: Props) => {
   // haiminh454
   // minhhai454
   if (auth) {
-    if(getLocalStorage){
+    if (getLocalStorage) {
       if (getLocalStorage.maLoaiNguoiDung === "QuanTri") {
+        
         dispatch(logOut());
         alert("Sai loai tai khoan");
         navigate("/login")
-        
+
       } else {
         navigate(-1);
       }
     }
-    
+
   } else {
     <Navigate to="/login" />
   }
+  
+    
   return (
     <main>
       <article>
@@ -108,7 +112,7 @@ const Login = (props: Props) => {
                 {errors.matKhau && <span className="">{errors.matKhau?.message}</span>}
                 <div className={styles["btn-gr"]}>
                   <button className={styles.btnLogin}>Log In</button>
-                  <button onClick = {()=>navigate('/register')} className={styles.btnLogin}>Register</button>
+                  <button onClick={() => navigate('/register')} className={styles.btnLogin}>Register</button>
                 </div>
               </form>
             </div>
