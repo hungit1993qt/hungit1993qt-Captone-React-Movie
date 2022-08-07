@@ -16,6 +16,8 @@ const MovieDetail = () => {
         navigate(`/checkout/${maLichChieuId}`);
     }
     const [opent, setOpent] = useState(false);
+    const [isClickShowRap, setIsClickShowRap] = useState(false);
+    const [isClickShowHTRap, setisClickShowHTRap] = useState(false);
     const { maPhim } = useParams()
     const { movies, isLoading, error } = useSelector(
         (state: RootState) => state.detail
@@ -67,7 +69,6 @@ const MovieDetail = () => {
 
         })
     }
-
     return (
         <div>
             <section className="movie-detail">
@@ -128,18 +129,20 @@ const MovieDetail = () => {
                                 {showtimes.heThongRapChieu.map((heThongRapChieu) => {
                                     return (
                                         <li className={styleDetail["cinima-bg"]} key={heThongRapChieu.maHeThongRap}>
-                                            <img className={styleDetail["cinima-img"]} src={heThongRapChieu.logo} alt={heThongRapChieu.tenHeThongRap} />
-                                            <div className={styleDetail["cinima-list"]}>
+
+                                            <button onClick={() => setIsClickShowRap(!isClickShowRap)}><img className={styleDetail["cinima-img"]} src={heThongRapChieu.logo} alt={heThongRapChieu.tenHeThongRap} /></button>
+                                            <div className={isClickShowRap ? `isClick${styleDetail['cinima-list']}` : `isClick${styleDetail['cinima-list']} ${styleDetail['hideContent']}`}>
                                                 {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
                                                     return (
                                                         <div key={cumRapChieu.maCumRap} className={styleDetail["cinima-cRC"]}>
-                                                            <img className={styleDetail["cinima-img"]} src={cumRapChieu.hinhAnh} alt={cumRapChieu.tenCumRap} />
-                                                            <div >
+
+                                                            <div onClick={() => setisClickShowHTRap(!isClickShowHTRap)} className={styleDetail['content-htRap']}>
+                                                                
                                                                 <h2 >{cumRapChieu.tenCumRap}</h2>
                                                                 <h3>{cumRapChieu.diaChi} <a href="#">[Bản đồ]</a></h3>
 
                                                             </div>
-                                                            <div className={styleDetail["cinima-cRc-space"]}>
+                                                            <div className={isClickShowHTRap ? `isClick${styleDetail['cinima-cRc-space']}` : `isClick${styleDetail['cinima-cRc-space']} ${styleDetail['hideContent']}`}>
                                                                 {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
 
                                                                     return (
@@ -167,9 +170,9 @@ const MovieDetail = () => {
                         <div className="showtime-detail"></div>
                     </div>
                 </div>
-            </section>
+            </section >
 
-        </div>
+        </div >
 
 
 

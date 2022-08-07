@@ -14,6 +14,7 @@
     display: block;
 }
 
+
 .cinima {
     background: url(../images/movie-detail-bg.png);
 }
@@ -23,6 +24,10 @@
     height: 47px;
     margin: 15px;
     display: inline-block;
+    &:hover{
+        border: 2px solid var(--citrine);
+        border-radius: 100%;
+    }
 }
 
 .cinima-bg {
@@ -47,9 +52,10 @@
     justify-content: flex-start;
     align-items: center;
     border-left: 1px solid rgb(255, 0, 0);
+    cursor: pointer;
 
     h3 {
-        font-size: var(--fs-11);
+        font-size: 9px;
         color: var(--white);
 
         a {
@@ -59,7 +65,7 @@
     }
 
     h2 {
-        font-size: var(--fs-5);
+        font-size: var(--fs-9);
         color: var(--citrine);
     }
 
@@ -82,6 +88,9 @@
         gap: 20px;
         flex-wrap: wrap;
     }
+    &:hover{
+        
+    }
 }
 
 .showtime-subtitle {
@@ -92,4 +101,15 @@
     letter-spacing: 1px;
     margin-bottom: 50px;
     text-align: center;
+}
+
+.content-htRap{
+    text-align: center;
+    border: 1px solid var(--citrine);
+    margin-left: 20px;
+    padding: 5px;
+    width: 200px;
+}
+.hideContent{
+    display: none;
 }

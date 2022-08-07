@@ -37,11 +37,11 @@ const ShowItemByNumber = (number:number)=>{
     return <h1>{error}</h1>
   }
   let stt = []
-  for (let index = 0; index < movies.totalPages!; index++) {
-    stt[index] = index + 1;
+  for (let index = 1; index < movies.totalPages!; index++) {
+    stt[index] = index ;
 
   }
-  console.log(stt)
+  console.log(movies)
 
   return (
 
@@ -49,8 +49,8 @@ const ShowItemByNumber = (number:number)=>{
       <article>
         <section className="top-rated">
           <div className="container">
-            <p className="section-subtitle">Online Streaming</p>
-            <h2 className="h2 section-title">Top Rated Movies</h2>
+            
+            <h2 className="h2 section-title">DANH SÁCH PHIM</h2>
             <ul className="filter-list">
               <li >
                 <button className="filter-btn">Movies</button>

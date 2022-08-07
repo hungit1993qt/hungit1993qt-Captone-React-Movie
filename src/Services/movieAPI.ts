@@ -9,7 +9,7 @@ const movieAPI = {
       params: {
         maNhom: "GP02",
         soTrang: numberPgae,
-        soPhanTuTrenTrang: 8,
+        soPhanTuTrenTrang: 4,
       }
     });
   },
