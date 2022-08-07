@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import MovieShowing from "./MovieShowing";
 
+
 type Props = {};
 
 const HomePage = (props: Props) => {

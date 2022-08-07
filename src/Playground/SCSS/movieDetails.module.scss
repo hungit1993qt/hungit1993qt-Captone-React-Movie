@@ -6,7 +6,7 @@
     display: none;
 }
 
-.showtime-Opent{
+.showtime-Opent {
     background: url("../images/tv-series-bg.jpg") no-repeat;
     background-size: cover;
     background-position: center;
@@ -24,7 +24,8 @@
     height: 47px;
     margin: 15px;
     display: inline-block;
-    &:hover{
+
+    &:hover {
         border: 2px solid var(--citrine);
         border-radius: 100%;
     }
@@ -70,11 +71,13 @@
     }
 
     .timeshow {
-        display: block;
-        border: 2px solid var(--citrine);
+        display: inline-block;
+        border: 1px solid var(--citrine);
         color: var(--white);
         align-items: center;
-        padding: 0 10px;
+        padding: 5px 5px;
+        font-size: 9px;
+        font-weight: bolder;
 
         &:hover {
             background-color: var(--citrine);
@@ -82,16 +85,17 @@
         }
     }
 
-    .cinima-cRc-space {
-        margin: 0 20px;
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    &:hover{
-        
-    }
+
 }
+
+.cinima-cRc-space {
+    margin: 0 20px;
+    display: flex;
+    gap: 5px;
+    flex-wrap:wrap;
+
+}
+
 
 .showtime-subtitle {
     color: var(--citrine);
@@ -103,13 +107,35 @@
     text-align: center;
 }
 
-.content-htRap{
+.content-htRap {
     text-align: center;
     border: 1px solid var(--citrine);
     margin-left: 20px;
     padding: 5px;
-    width: 200px;
+    width: 200px !important;
+    height: 60px !important;
 }
-.hideContent{
+
+.hideContent {
     display: none;
+}
+
+.showtime-btn {
+    display: flex;
+    margin: 1px;
+}
+.title-start{
+    color: var(--citrine);
+    font-size: 25px;
+}
+.content-showTime{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.timeshows{
+    color: var(--citrine);
+    border: 1px solid var(--citrine);
+    font-size: 12px;
+    padding: 5px;
 }

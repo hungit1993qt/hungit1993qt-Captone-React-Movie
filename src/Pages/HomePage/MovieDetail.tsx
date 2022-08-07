@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "configStore";
 import { getMovieDetails } from "Slices/movieDetail";
@@ -8,9 +8,16 @@ import Loading from "Pages/Loading/Loading";
 import { getMovieShowTime } from "Slices/showTime";
 import styleDetail from 'Playground/SCSS/movieDetails.module.scss'
 import Swal from 'sweetalert2';
+import {Tabs } from "antd";
+
+
+
+const { TabPane } = Tabs;
 
 
 const MovieDetail = () => {
+    
+
     const navigate = useNavigate();
     const checkLogin = (maLichChieuId: number) => {
         navigate(`/checkout/${maLichChieuId}`);
@@ -28,7 +35,7 @@ const MovieDetail = () => {
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(getMovieDetails(+maPhim!));
-        dispatch(getMovieShowTime(+maPhim!))
+        dispatch(getMovieShowTime(+maPhim!))       
     }, []);
     if (isLoading) {
         // TODO: Loading component
@@ -42,6 +49,11 @@ const MovieDetail = () => {
         // TODO: Error component
         return <h1>{error}</h1>;
     }
+
+
+
+
+
     Moment.locale('en');
     const time = showtimes.heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong;
     const date = showtimes.ngayKhoiChieu;
@@ -123,7 +135,7 @@ const MovieDetail = () => {
                 <div className="container">
                     <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
                     <p className={styleDetail["showtime-subtitle"]}>" {tenPhim}"</p>
-                    <div className="detail-showtime">
+                    {/* <div className="detail-showtime">
                         <div className={styleDetail["cinima"]}>
                             <ul >
                                 {showtimes.heThongRapChieu.map((heThongRapChieu) => {
@@ -131,7 +143,7 @@ const MovieDetail = () => {
                                         <li className={styleDetail["cinima-bg"]} key={heThongRapChieu.maHeThongRap}>
 
                                             <button onClick={() => setIsClickShowRap(!isClickShowRap)}><img className={styleDetail["cinima-img"]} src={heThongRapChieu.logo} alt={heThongRapChieu.tenHeThongRap} /></button>
-                                            <div className={isClickShowRap ? `isClick${styleDetail['cinima-list']}` : `isClick${styleDetail['cinima-list']} ${styleDetail['hideContent']}`}>
+                                            <div className={isClickShowRap ? `${styleDetail['cinima-list']}` : `${styleDetail['cinima-list']} ${styleDetail['hideContent']}`}>
                                                 {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
                                                     return (
                                                         <div key={cumRapChieu.maCumRap} className={styleDetail["cinima-cRC"]}>
@@ -142,12 +154,12 @@ const MovieDetail = () => {
                                                                 <h3>{cumRapChieu.diaChi} <a href="#">[Bản đồ]</a></h3>
 
                                                             </div>
-                                                            <div className={isClickShowHTRap ? `isClick${styleDetail['cinima-cRc-space']}` : `isClick${styleDetail['cinima-cRc-space']} ${styleDetail['hideContent']}`}>
+                                                            <div className={isClickShowHTRap ? `${styleDetail['cinima-cRc-space']}` : `${styleDetail['cinima-cRc-space']} ${styleDetail['hideContent']}`}>
                                                                 {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
 
                                                                     return (
 
-                                                                        <div key={lichChieuPhim.maLichChieu}>
+                                                                        <div className={styleDetail["showtime-btn"]} key={lichChieuPhim.maLichChieu}>
                                                                             <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshow"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
                                                                         </div>
                                                                     )
@@ -168,7 +180,30 @@ const MovieDetail = () => {
 
                         </div>
                         <div className="showtime-detail"></div>
-                    </div>
+                    </div> */}
+                    <Tabs tabPosition={"top"}>
+                        {showtimes.heThongRapChieu.map((heThongRapChieu, index) => {
+                            return (
+                                <TabPane tab={<img src={heThongRapChieu.logo} width={50} height={50} />} key={index}>
+                                    {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
+                                        return (
+                                            <div >
+                                                <h1 className={styleDetail["title-start"]}>{cumRapChieu.tenCumRap} - {cumRapChieu.diaChi}</h1>
+                                                <div className={styleDetail["content-showTime"]}>
+                                                    {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
+                                                        return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                    })}
+                                                </div>
+
+                                            </div>
+                                        )
+                                    })}
+                                </TabPane>
+                            )
+                        })}
+
+
+                    </Tabs>
                 </div>
             </section >
 

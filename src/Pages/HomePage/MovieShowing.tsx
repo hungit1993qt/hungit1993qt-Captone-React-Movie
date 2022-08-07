@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
 import styles from 'Playground/SCSS/MovieShowing.module.scss'
-
+import { Pagination } from 'antd';
 
 const MovieShowing = () => {
   const navigate = useNavigate();
@@ -108,7 +108,7 @@ const ShowItemByNumber = (number:number)=>{
                 return ( <li key={PageNumber} className={styles["li-page"]}> <button className={styles["btn-page"]} onClick={()=>ShowItemByNumber(PageNumber)}>{PageNumber}</button></li>)
                
               })}
-
+              
             </ul>
 
 

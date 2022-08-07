@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import "./Playground/css/index.css"
 //setup redux
 import store from "./configStore";
+import 'antd/dist/antd.css';
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

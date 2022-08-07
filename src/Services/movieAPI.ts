@@ -7,9 +7,9 @@ const movieAPI = {
     // Khai báo hàm call API dữ liệu trả về là Movie[]
     return axiosClient.get("QuanLyPhim/LayDanhSachPhimPhanTrang", {
       params: {
-        maNhom: "GP02",
+        maNhom: "GP05 ",
         soTrang: numberPgae,
-        soPhanTuTrenTrang: 4,
+        soPhanTuTrenTrang: 8,
       }
     });
   },
@@ -28,6 +28,9 @@ const movieAPI = {
         maPhim: maPhim,
       }
     })
+  },
+  getBanner:()=>{
+    return axiosClient.get("QuanLyPhim/LayDanhSachBanner");
   },
 
   //get API dữ liệu trả về []
