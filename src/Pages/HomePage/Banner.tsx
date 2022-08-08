@@ -18,7 +18,8 @@ const Banner = () => {
 
   }
   return (
-    <Carousel autoplay>
+    <Carousel dots={false}  autoplay>
+      
       {banner.map((banners) => {
         return (
 
