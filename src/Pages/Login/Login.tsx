@@ -66,6 +66,7 @@ const Login = (props: Props) => {
 
       } else {
         navigate(-1);
+        localStorage.removeItem("registerUser");
       }
     }
 

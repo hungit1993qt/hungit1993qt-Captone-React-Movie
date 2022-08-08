@@ -39,6 +39,7 @@ export const postRegisterUser = createAsyncThunk(
 
                 } else {
                     localStorage.setItem("registerUser", JSON.stringify(data));
+                    // console.log(data)
                     Swal.fire({
                         position: 'center',
                         icon: 'success',

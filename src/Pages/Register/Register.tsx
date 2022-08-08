@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from 'Playground/SCSS/Register.module.scss'
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -47,6 +47,7 @@ const Register = () => {
     resolver: yupResolver(schema),
   });
   const getRegisterLocalstrage: RegisterValue = JSON.parse(localStorage.getItem("registerUser") as string) || null
+  const [render, setRender] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>()
   const onSubmit = (values: RegisterValue) => {
@@ -63,9 +64,19 @@ const Register = () => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(postRegisterUser(values))
-        
-        
+        dispatch(postRegisterUser(values));
+        navigate("/");
+        // if (getRegisterLocalstrage) {
+        //   if (getRegisterLocalstrage.matKhau) {
+        //     setRender(!render);
+        //     navigate("login");
+        //     console.log(getRegisterLocalstrage.matKhau)
+        //   }
+        // }
+
+
+
+
       } else if (result.isDenied) {
         Swal.fire('Tài khoản chưa được đăng ký', '', 'info')
       }
@@ -73,8 +84,10 @@ const Register = () => {
 
 
 
+
   };
-  
+
+
 
   return (
     <main>
