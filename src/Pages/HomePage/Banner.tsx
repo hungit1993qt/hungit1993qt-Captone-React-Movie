@@ -22,7 +22,7 @@ const Banner = () => {
       {banner.map((banners) => {
         return (
 
-          <img className={styles['img-Banner']} src={banners.hinhAnh!} alt="" />
+          <img key={banners.maPhim} className={styles['img-Banner']} src={banners.hinhAnh!} alt="" />
 
 
         )

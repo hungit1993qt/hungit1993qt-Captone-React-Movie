@@ -78,7 +78,6 @@ const MovieShowing = () => {
             </ul>
             <ul className="movies-list">
               {movies.items.map((movie: any) => {
-
                 Moment.locale('en');
                 const date = movie.ngayKhoiChieu
                 return (
@@ -130,7 +129,7 @@ const MovieShowing = () => {
       </article>
       <section className="showtime-Opent">
         <div className="container">
-          <h2 className="h2 section-title titleh2">LỊCH CHIẾU PHIM</h2>
+          <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
           <Tabs tabPosition={"left"}>
             {cinimax.map((heThongRap, index) => {
               return (
@@ -174,7 +173,7 @@ const MovieShowing = () => {
                                         {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
                                           if (indexlst < 6) {
                                             return (
-                                              <h1 className={styles["h1Showtime"]}>Giờ chiếu: {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - Giá vé: {lst.giaVe!.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1>
+                                              <h1 key={lst.maLichChieu} className={styles["h1Showtime"]}>Giờ chiếu: {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - Giá vé: {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1>
                                             )
                                           }
 
