@@ -10,6 +10,7 @@ import { ListPay } from 'Interface/listPay'
 import { SeatBookingSlice, DeleteBooking, DeleteAllBooking, postSeatBooking } from 'Slices/listSeatBooking'
 import Swal from 'sweetalert2'
 import Loading from "Pages/Loading/Loading";
+import screen from "Playground/images/screen.png"
 
 
 
@@ -101,6 +102,9 @@ const Checkout = () => {
 
           <div className="service-banner">
             <div className={stylesCheckout["list-seat"]}>
+              <img src={screen} alt="" />
+            </div>
+            <div className={stylesCheckout["list-seat"]}>
               {seatTicket.danhSachGhe.map((danhSachGhe, index) => {
                 let isSelected = "";
                 let indexSeatBooking = listSeatBooking.findIndex((seatBooked) => danhSachGhe.maGhe === seatBooked.maGhe)
@@ -112,6 +116,7 @@ const Checkout = () => {
 
                   <Fragment key={danhSachGhe.maGhe}>
                     <button onClick={() => handleSelect(danhSachGhe)} className={`btn-ticket ${danhSachGhe.loaiGhe} ${danhSachGhe.daDat} ${isSelected} `} disabled={danhSachGhe.daDat}>{danhSachGhe.daDat ? "X" : danhSachGhe.stt} </button>
+                   
                   </Fragment>
 
                 );
@@ -171,9 +176,9 @@ const Checkout = () => {
               </li>
             </ul>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
 
 
 

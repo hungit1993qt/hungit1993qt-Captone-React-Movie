@@ -138,7 +138,7 @@ const MovieShowing = () => {
                     {heThongRap.lstCumRap.map((cumRapChieu, i) => {
                       return (
                         <TabPane tab={
-                          <div className={styles["card-cinima"]}>
+                          <div key={heThongRap.maHeThongRap} className={styles["card-cinima"]}>
                             <img src={heThongRap.logo!} width={50} height={50} />
                             <div className={styles["card-detail"]}>
                               <b>{cumRapChieu.tenCumRap}</b><br />
@@ -151,13 +151,13 @@ const MovieShowing = () => {
                           <div >
 
                             <div className={styles["content-showTime"]}>
-                              <Tabs tabPosition={"top"}>
+                              <Tabs tabPosition={"left"}>
                                 {cumRapChieu.danhSachPhim.map((lichChieuPhim, ilcp) => {
                                   if (ilcp < 5) {
                                     return (
 
-                                      <TabPane  tab={
-                                        <div className={styles["card-film"]}>
+                                      <TabPane tab={
+                                        <div key={lichChieuPhim.maPhim} className={styles["card-film"]}>
                                           <img src={lichChieuPhim.hinhAnh!} width={50} height={50} />
                                           <div className={styles["card-detail-film"]}>
                                             <b>{lichChieuPhim.tenPhim}</b><br />
@@ -173,7 +173,7 @@ const MovieShowing = () => {
                                         {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
                                           if (indexlst < 6) {
                                             return (
-                                              <h1 key={lst.maLichChieu} className={styles["h1Showtime"]}>Giờ chiếu: {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - Giá: {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1>
+                                              <button key={lst.maLichChieu} style={{ margin: "auto", width:"100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1  className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
                                             )
                                           }
 
