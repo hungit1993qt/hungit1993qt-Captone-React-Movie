@@ -29,7 +29,7 @@ const movieAPI = {
       }
     })
   },
-  getBanner:()=>{
+  getBanner: () => {
     return axiosClient.get("QuanLyPhim/LayDanhSachBanner");
   },
 
@@ -43,6 +43,9 @@ const movieAPI = {
   },
   postSeatBooking: (thongTinDatVe: ListPay) => {
     return axiosClient.post("QuanLyDatVe/DatVe", thongTinDatVe)
+  },
+  getCinimax: () => {
+    return axiosClient.get("QuanLyRap/LayThongTinLichChieuHeThongRap")
   },
 
   // Và những còn lại liên quan đến movie...

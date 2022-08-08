@@ -1,15 +1,100 @@
-.ul-page{
+.ul-page {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 10px;
 }
-.btn-page{
+
+.btn-page {
     color: var(--citrine);
     text-align: center;
     border: 1px solid var(--citrine);
     width: 30px;
 }
-.li-page{
+
+.li-page {
     margin: 5px 3px;
+}
+
+.showtime-subtitle {
+    color: var(--citrine);
+    font-size: var(--fs-11);
+    font-weight: var(--fw-500);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.title-start {
+    color: var(--citrine);
+    font-size: 25px;
+}
+
+.content-showTime {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.timeshows {
+    color: var(--citrine);
+    border: 1px solid var(--citrine);
+    font-size: 12px;
+    padding: 5px;
+}
+
+.card-cinima {
+    display: flex;
+    width: 280px;
+
+}
+
+.card-detail {
+    margin-left: 10px;
+    text-align: left;
+
+    b {
+        color: var(--citrine);
+        font-size: 11px;
+    }
+
+    i {
+        color: var(--white);
+        font-size: 10px;
+    }
+
+}
+
+.card-film {
+    display: flex;
+    width: 200px;
+    border: 1px solid var(--citrine);
+    padding: 10px;
+    
+}
+
+.card-detail-film {
+    margin-left: 10px;
+    text-align: left;
+
+    b {
+        color: var(--citrine);
+        font-size: 11px;
+    }
+
+    i {
+        color: var(--white);
+        font-size: 10px;
+    }
+}
+.h1Showtime{
+    color: var(--citrine);
+    border: 1px solid var(--citrine);
+    text-align: center;
+    padding: 5px 0;
+    &:hover{
+        background-color: var(--citrine);
+        color: black;
+    }
 }
