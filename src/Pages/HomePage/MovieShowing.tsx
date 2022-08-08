@@ -130,11 +130,11 @@ const MovieShowing = () => {
       <section className="showtime-Opent">
         <div className="container">
           <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
-          <Tabs tabPosition={"left"}>
+          <Tabs tabPosition={"top"}>
             {cinimax.map((heThongRap, index) => {
               return (
                 <TabPane tab={<img src={heThongRap.logo!} width={50} height={50} />} key={index}>
-                  <Tabs tabPosition={"left"}>
+                  <Tabs tabPosition={"top"}>
                     {heThongRap.lstCumRap.map((cumRapChieu, i) => {
                       return (
                         <TabPane tab={
@@ -151,7 +151,7 @@ const MovieShowing = () => {
                           <div >
 
                             <div className={styles["content-showTime"]}>
-                              <Tabs tabPosition={"left"}>
+                              <Tabs tabPosition={"top"}>
                                 {cumRapChieu.danhSachPhim.map((lichChieuPhim, ilcp) => {
                                   if (ilcp < 5) {
                                     return (
@@ -173,7 +173,7 @@ const MovieShowing = () => {
                                         {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
                                           if (indexlst < 6) {
                                             return (
-                                              <h1 key={lst.maLichChieu} className={styles["h1Showtime"]}>Giờ chiếu: {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - Giá vé: {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1>
+                                              <h1 key={lst.maLichChieu} className={styles["h1Showtime"]}>Giờ chiếu: {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - Giá: {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1>
                                             )
                                           }
 
