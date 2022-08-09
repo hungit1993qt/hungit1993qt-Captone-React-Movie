@@ -153,7 +153,7 @@ const MovieShowing = () => {
                                   if (ilcp < 5) {
                                     return (
 
-                                      <TabPane tab={
+                                      <TabPane  tab={
                                         <div key={lichChieuPhim.maPhim} className={styles["card-film"]}>
                                           <img src={lichChieuPhim.hinhAnh!} width={50} height={50} />
                                           <div className={styles["card-detail-film"]}>

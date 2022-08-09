@@ -88,8 +88,6 @@ const MovieDetail = () => {
                     <figure className="movie-detail-banner">
                         <img src={hinhAnh} alt={tenPhim} />
                         <button onClick={() => showTrainer()} className="play-btn" >
-
-
                         </button>
                     </figure>
                     <div className="movie-detail-content">
@@ -135,74 +133,24 @@ const MovieDetail = () => {
                 <div className="container">
                     <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
                     <p className={styleDetail["showtime-subtitle"]}>" {tenPhim}"</p>
-                    {/* <div className="detail-showtime">
-                        <div className={styleDetail["cinima"]}>
-                            <ul >
-                                {showtimes.heThongRapChieu.map((heThongRapChieu) => {
-                                    return (
-                                        <li className={styleDetail["cinima-bg"]} key={heThongRapChieu.maHeThongRap}>
-
-                                            <button onClick={() => setIsClickShowRap(!isClickShowRap)}><img className={styleDetail["cinima-img"]} src={heThongRapChieu.logo} alt={heThongRapChieu.tenHeThongRap} /></button>
-                                            <div className={isClickShowRap ? `${styleDetail['cinima-list']}` : `${styleDetail['cinima-list']} ${styleDetail['hideContent']}`}>
-                                                {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
-                                                    return (
-                                                        <div key={cumRapChieu.maCumRap} className={styleDetail["cinima-cRC"]}>
-
-                                                            <div onClick={() => setisClickShowHTRap(!isClickShowHTRap)} className={styleDetail['content-htRap']}>
-                                                                
-                                                                <h2 >{cumRapChieu.tenCumRap}</h2>
-                                                                <h3>{cumRapChieu.diaChi} <a href="#">[Bản đồ]</a></h3>
-
-                                                            </div>
-                                                            <div className={isClickShowHTRap ? `${styleDetail['cinima-cRc-space']}` : `${styleDetail['cinima-cRc-space']} ${styleDetail['hideContent']}`}>
-                                                                {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
-
-                                                                    return (
-
-                                                                        <div className={styleDetail["showtime-btn"]} key={lichChieuPhim.maLichChieu}>
-                                                                            <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshow"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
-                                                                        </div>
-                                                                    )
-                                                                })}
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        </li>
-                                    );
-                                })}
-
-                            </ul>
-
-
-
-
-                        </div>
-                        <div className="showtime-detail"></div>
-                    </div> */}
                     <Tabs tabPosition={"top"}>
                         {showtimes.heThongRapChieu.map((heThongRapChieu, index) => {
                             return (
                                 <TabPane tab={<img src={heThongRapChieu.logo} width={50} height={50} />} key={index}>
                                     {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
-
                                         return (
-                                            <div >
+                                            <div key={cumRapChieu.maCumRap}>
                                                 <h1 className={styleDetail["title-start"]}>{cumRapChieu.tenCumRap} - {cumRapChieu.diaChi}</h1>
                                                 <div className={styleDetail["content-showTime"]}>
                                                     {cumRapChieu.lichChieuPhim.map((lichChieuPhim, index) => {
                                                         if (index < 6) {
-                                                            return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm A')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                            return <button key={lichChieuPhim.maLichChieu} onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm A')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
                                                         }
 
                                                     })}
                                                 </div>
-
                                             </div>
                                         )
-
-
                                     })}
                                 </TabPane>
                             )
