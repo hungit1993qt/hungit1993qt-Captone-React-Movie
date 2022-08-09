@@ -5,7 +5,7 @@ import { LoginValues } from "Interface/loginValue"
 import { useSelector, useDispatch } from 'react-redux';
 import { postUserLogin, logOut } from "Slices/auth";
 import { AppDispatch, RootState } from "configStore";
-import { Navigate, NavLink, useNavigate, useParams } from "react-router-dom";
+import { Navigate, NavLink, useNavigate, useParams, Location, useLocation } from "react-router-dom";
 import { useEffect } from 'react'
 import { User } from 'Interface/user'
 import Loading from 'Pages/Loading/Loading'
@@ -27,6 +27,8 @@ const Login = (props: Props) => {
     // mode: cách validation được trigger (default là submit)
 
   });
+  const location = useLocation();
+  console.log(location.state);
   const getLocalStorage = JSON.parse(localStorage.getItem("user") as string) || null;
   const navigate = useNavigate()
   const { auth, isLoading, error } = useSelector(
@@ -73,6 +75,7 @@ const Login = (props: Props) => {
   } else {
     <Navigate to="/login" />
   }
+  
 
 
   return (

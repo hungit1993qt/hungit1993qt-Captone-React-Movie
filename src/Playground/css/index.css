@@ -1122,7 +1122,7 @@ body.active {
     background-size: cover;
     background-position: center;
     padding-top: 160px;
-    padding-bottom: var(--section-padding);
+    padding-bottom: 10px;
 }
 
 .movie-detail-banner {

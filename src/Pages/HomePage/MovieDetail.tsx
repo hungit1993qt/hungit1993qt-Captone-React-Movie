@@ -8,7 +8,7 @@ import Loading from "Pages/Loading/Loading";
 import { getMovieShowTime } from "Slices/showTime";
 import styleDetail from 'Playground/SCSS/movieDetails.module.scss'
 import Swal from 'sweetalert2';
-import {Tabs } from "antd";
+import { Tabs } from "antd";
 
 
 
@@ -16,7 +16,7 @@ const { TabPane } = Tabs;
 
 
 const MovieDetail = () => {
-    
+
 
     const navigate = useNavigate();
     const checkLogin = (maLichChieuId: number) => {
@@ -35,7 +35,7 @@ const MovieDetail = () => {
     const dispatch = useDispatch<AppDispatch>();
     useEffect(() => {
         dispatch(getMovieDetails(+maPhim!));
-        dispatch(getMovieShowTime(+maPhim!))       
+        dispatch(getMovieShowTime(+maPhim!))
     }, []);
     if (isLoading) {
         // TODO: Loading component
@@ -186,17 +186,23 @@ const MovieDetail = () => {
                             return (
                                 <TabPane tab={<img src={heThongRapChieu.logo} width={50} height={50} />} key={index}>
                                     {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
+
                                         return (
                                             <div >
                                                 <h1 className={styleDetail["title-start"]}>{cumRapChieu.tenCumRap} - {cumRapChieu.diaChi}</h1>
                                                 <div className={styleDetail["content-showTime"]}>
-                                                    {cumRapChieu.lichChieuPhim.map((lichChieuPhim) => {
-                                                        return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                    {cumRapChieu.lichChieuPhim.map((lichChieuPhim, index) => {
+                                                        if (index < 6) {
+                                                            return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                        }
+
                                                     })}
                                                 </div>
 
                                             </div>
                                         )
+
+
                                     })}
                                 </TabPane>
                             )

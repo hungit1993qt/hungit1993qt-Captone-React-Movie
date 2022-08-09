@@ -10,7 +10,6 @@
     background: url("../images/tv-series-bg.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    padding-block: var(--section-padding);
     display: block;
 }
 
@@ -129,9 +128,11 @@
     font-size: 25px;
 }
 .content-showTime{
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
+    grid-template-columns: repeat(3, auto);
+    
 }
 .timeshows{
     color: var(--citrine);
