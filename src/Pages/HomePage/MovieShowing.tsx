@@ -168,7 +168,7 @@ const MovieShowing = () => {
                                         </div>
                                       } key={ilcp}>
                                         {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
-                                          if (indexlst < 12) {
+                                          if (indexlst < 15) {
                                             return (
                                               <button key={lst.maLichChieu} style={{ margin: "auto", width:"100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1  className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
                                             )
