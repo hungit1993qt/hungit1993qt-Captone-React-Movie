@@ -129,9 +129,8 @@
 }
 .content-showTime{
     display: grid;
-    flex-wrap: wrap;
     gap: 10px;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
     
 }
 .timeshows{

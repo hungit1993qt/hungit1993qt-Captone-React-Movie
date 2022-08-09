@@ -193,7 +193,7 @@ const MovieDetail = () => {
                                                 <div className={styleDetail["content-showTime"]}>
                                                     {cumRapChieu.lichChieuPhim.map((lichChieuPhim, index) => {
                                                         if (index < 6) {
-                                                            return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm ')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                            return <button onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm A')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
                                                         }
 
                                                     })}

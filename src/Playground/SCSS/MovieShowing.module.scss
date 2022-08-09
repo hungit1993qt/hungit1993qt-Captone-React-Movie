@@ -70,7 +70,7 @@
     display: flex;
     width: 190px;
     border: 1px solid var(--citrine);
-    padding: 10px;
+    padding: 5px 0 5px 5px;
     
 }
 
@@ -90,10 +90,11 @@
 }
 .h1Showtime{
     color: var(--citrine);
-    font-size: 11px;
+    font-size: 10px;
     border: 1px solid var(--citrine);
     text-align: center;
-    padding: 3px 0;
+    padding: 2px 0;
+    margin-right: 22px;
     &:hover{
         background-color: var(--citrine);
         color: black;
