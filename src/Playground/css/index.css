@@ -349,7 +349,7 @@ body.active {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
 }
 
 .one,
@@ -393,9 +393,8 @@ body.active {
 
 .movie-card .card-meta {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 15px;
 }
 
 .movie-card .badge {
@@ -847,6 +846,7 @@ body.active {
     background: url("../images/top-rated-bg.jpg") no-repeat;
     background-size: cover;
     background-position: center;
+    z-index: 5;
 }
 
 .top-rated .section-title {

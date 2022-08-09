@@ -100,7 +100,7 @@ const Checkout = () => {
       <section className="service">
         <div className="container">
 
-          <div className="service-banner">
+          <div className={stylesCheckout["service-checkout"]}>
             <div className={stylesCheckout["list-seat"]}>
               <img src={screen} alt="" />
             </div>

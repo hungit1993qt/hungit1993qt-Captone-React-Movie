@@ -1,12 +1,21 @@
-.contentStyle {
-    height: 160px;
-    color: #fff;
-    lineHeight: 160px;
-    textAlign: center;
-    background: #364d79
+.carousel-content {
+    margin-top: 70px;
+    
 }
 
 img.img-Banner {
     width: 100%;
-    height: 100%;
+    display: block;
+    object-fit:cover;
+    height: 650px;
+}
+@media (max-width: 850) {
+    img.img-Banner {
+        height: 450px;
+    }
+}
+@media (max-width: 450) {
+    img.img-Banner {
+        height: 300px;
+    }
 }

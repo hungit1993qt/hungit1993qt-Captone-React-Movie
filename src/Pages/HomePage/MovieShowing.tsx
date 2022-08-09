@@ -95,10 +95,7 @@ const MovieShowing = () => {
                       </div>
                       <div className="card-meta">
                         <div className="badge badge-outline">{Moment(date).format('DD-MM-YYYY')}</div>
-                        <div className="duration">
-
-                          <time className="badge badge-outline" >{Math.floor(Math.random() * 100) + 90} Phút</time>
-                        </div>
+                        
                         <div className="rating">
 
                           <data className="badge badge-outline">Rank({movie.danhGia}*)</data>

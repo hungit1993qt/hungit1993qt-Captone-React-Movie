@@ -18,17 +18,20 @@ const Banner = () => {
 
   }
   return (
-    <Carousel dots={false}  autoplay>
-      
-      {banner.map((banners) => {
-        return (
+    <div className={styles['carousel-content']}>
+      <Carousel dots={false} autoplay>
 
-          <img key={banners.maPhim} className={styles['img-Banner']} src={banners.hinhAnh!} alt="" />
+        {banner.map((banners) => {
+          return (
+
+            <img key={banners.maPhim} className={styles['img-Banner']} src={banners.hinhAnh!} alt="" />
 
 
-        )
-      })}
-    </Carousel>
+          )
+        })}
+      </Carousel>
+    </div>
+
 
 
   );

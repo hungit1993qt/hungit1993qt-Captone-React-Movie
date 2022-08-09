@@ -29,17 +29,24 @@
 }
 
 .list-seat {
-    display: flex;
-    flex-wrap: wrap;
+    // display: flex;
+    // flex-wrap: wrap;
+    // //justify-content: space-between;
+    // max-width: 1280px;
+    // margin-left: 5px;
+    display: grid;
     //justify-content: space-between;
-    max-width: 1280px;
-    margin-left: 5px;
+    grid-template-columns: repeat(16, auto);
+    img{
+        width: 705px
+    }
 }
 
 .descri-seat {
     display: flex;
     justify-content: center;
     gap: 20px;
+    width: 705px;
 
     .seat {
         display: flex;
@@ -102,7 +109,10 @@
 
 @media (max-width: 550px) {
     .list-seat {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        
+    }
+    .service-checkout{
+        overflow-x: scroll;
     }
 }
