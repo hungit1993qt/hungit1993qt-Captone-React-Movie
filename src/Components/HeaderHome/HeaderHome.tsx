@@ -68,23 +68,23 @@ const HeaderHome = (props: Props) => {
                 isActive ? "navbar-link activeLink" : "navbar-link"
               }><h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3></NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to={"/"} className={({ isActive }) =>
                 isActive ? "navbar-link activeLink" : "navbar-link"
               }>Home</NavLink>
-            </li>
+            </li> */}
 
-            <li>
+            {/* <li>
               <NavLink className={({ isActive }) =>
                 isActive ? "navbar-link activeLink" : "navbar-link"
               }
                 to={"about"}>About</NavLink>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <NavLink to={"contact"} className={({ isActive }) =>
                 isActive ? "navbar-link activeLink" : "navbar-link"
               }>Contact</NavLink>
-            </li>
+            </li> */}
 
             <li className={stylesHeader["li-submenu"]}>
               <NavLink className="navbar-link" to={auth ? "/" : "login"}>
