@@ -89,7 +89,7 @@ const HeaderHome = (props: Props) => {
             <li className={stylesHeader["li-submenu"]}>
               <NavLink className="navbar-link" to={auth ? "/" : "login"}>
                 <button
-                  onClick={() => Logout()}
+                 onClick={() => { auth ? Logout() : Login() }}
                   className={stylesHeader["btn-submenu"]}
                 >
                   {getLocalStorage ? "LOG OUT" : "SIGN IN"}
