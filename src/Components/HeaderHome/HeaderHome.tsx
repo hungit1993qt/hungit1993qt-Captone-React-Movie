@@ -25,25 +25,26 @@ const HeaderHome = (props: Props) => {
   }
   const [Active, setActive] = useState(false);
 
-  // const ref = useRef(null)
+  const ref = useRef(null)
+  const handleClickOutside = () => {
+    console.log('clicked outside')
+    setActive(false)
+  }
 
-  // const handleClickOutside = () => {
-  //   // Your custom logic here
-  //   console.log('clicked outside')
-  // }
+  const handleClickInside = () => {
+    // Your custom logic here
+    console.log('clicked inside')
+    setActive(true)
 
-  // const handleClickInside = () => {
-  //   // Your custom logic here
-  //   console.log('clicked inside')
-  // }
+  }
 
-  // useOnClickOutside(ref, handleClickOutside)
+  useOnClickOutside(ref, handleClickOutside)
 
 
 
   return (
     <header className="header active">
-      <div  className="container">
+      <div className="container">
         <div className="overlay" />
         <NavLink to="/" className={({ isActive }) => isActive ? "logo activeLink" : "logo"}>
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
@@ -58,7 +59,8 @@ const HeaderHome = (props: Props) => {
             </button>
           </NavLink>
         </div>
-        <button className={Active ? "menu-open-btn active" : "menu-open-btn"} onClick={() => setActive(!Active)} >
+        <button className={Active ? "menu-open-btn active" : "menu-open-btn"} ref={ref}
+          onClick={Active?handleClickOutside:handleClickInside} >
           <span className="one" ></span>
           <span className="two" ></span>
           <span className="three" ></span>
@@ -71,7 +73,7 @@ const HeaderHome = (props: Props) => {
 
             </NavLink>
 
-            <button className={Active ? "menu-open-btn active" : "menu-open-btn"} onClick={() => setActive(!Active)} >
+            <button className={Active ? "menu-open-btn active" : "menu-open-btn"} onClick={() => setActive(false)} >
               <span className={Active ? "one active" : "one"} ></span>
               <span className={Active ? "two active" : "two"} ></span>
               <span className={Active ? "three active" : "three"} ></span>
