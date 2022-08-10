@@ -8,6 +8,8 @@ import styles from 'Playground/SCSS/Booked.module.scss'
 import Moment from 'moment';
 import { getMovieDetails } from "Slices/movieDetail";
 import Loading from "Pages/Loading/Loading";
+import 'antd/dist/antd.css';
+import { Table } from 'antd';
 const Booked = () => {
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -21,7 +23,6 @@ const Booked = () => {
   const { movies } = useSelector(
     (state: RootState) => state.detail
   );
-  console.log(movies)
   const showMoreInforFilm = (tenPhim: string, hinhAnh: string, ngayDat: string, giaVe: number, thoiLuong: number) => {
     Swal.fire({
       title: `${tenPhim}`,
@@ -57,6 +58,7 @@ const Booked = () => {
     // TODO: Error component
     return <h1>{error}</h1>
   }
+
   return (
     <div>
       <section className="service">
@@ -66,18 +68,28 @@ const Booked = () => {
         <table className={styles['container']}>
           <thead>
             <tr >
+              <th>STT</th>
               <th>THÔNG TIN PHIM</th>
               <th>THÔNG TIN GHẾ</th>
+
             </tr>
           </thead>
           <tbody>
             {/* {Moment(infor.ngayDat).format('DD-MM-YYYY')} */}
-            {inforBookeds.thongTinDatVe?.map((film) => {
+            {inforBookeds.thongTinDatVe?.map((film,indexFilm) => {
               return (
-                <tr className={styles['trboder']} key={film.maVe}>
+                <tr className={styles['trboder']} key={indexFilm}>
+                  <td className={styles['stt-td']}>{indexFilm +1}</td>
                   <td><button className={styles['btn-Show-More-Infor']} onClick={() => { showMoreInforFilm(film.tenPhim!, film.hinhAnh!, film.ngayDat!, film.giaVe!, film.thoiLuongPhim!) }} >{film.tenPhim}</button></td>
-                  <td > {film.danhSachGhe.map((ghe) => {
-                    return (<button key={ghe.maGhe} className={styles['btn-Show-More-Infor-Seat']} onClick={() => { showMoreInforSeat(ghe.tenGhe!, ghe.tenHeThongRap!, ghe.tenRap!, film.ngayDat!) }} >{ghe.tenGhe}</button>)
+                  <td > {film.danhSachGhe.map((ghe, indexGhe) => {
+                    if (indexGhe < 5) {
+                      return (
+                        
+                        <button key={ghe.maGhe} className={styles['btn-Show-More-Infor-Seat']} onClick={() => { showMoreInforSeat(ghe.tenGhe!, ghe.tenHeThongRap!, ghe.tenRap!, film.ngayDat!) }} >{ghe.tenGhe}</button>
+                        
+                      )
+                    }
+
                   })}
                   </td>
 

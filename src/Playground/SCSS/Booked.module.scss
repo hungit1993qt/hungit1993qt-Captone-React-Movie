@@ -1,19 +1,18 @@
 
 .btn-Show-More-Infor {
-    display: inline-block !important;
+    display: inline-block;
     --fs-11: 14px;
     padding: 5px 10px;
     letter-spacing: 1px;
     
     border-radius: 50px;
     text-align: center;
-    display: inline-block;
     color: var(--citrine);
     background: var(--eerie-black);
     &:hover {
         background: var(--eerie-black);
         color: var(--citrine);
-        ;
+        
     }
 }
 
@@ -31,7 +30,7 @@
     &:hover {
         color: var(--citrine);
         background: var(--eerie-black);
-        overflow: hidden;        
+        overflow: visible;        
     }
 }
 
@@ -45,10 +44,7 @@ h1 {
 
 
 
-.blue {
-    color: var(--citrine);
-    margin: 10px;
-}
+
 
 
 
@@ -69,7 +65,7 @@ h1 {
 
 .container {
     text-align: left;
-    overflow: hidden;
+    overflow: visible;
     width: 80%;
     margin: 0 auto;
     display: table;
@@ -82,6 +78,7 @@ h1 {
     padding-top: 2%;
     padding-left: 2%;
     border: 1px solid var(--citrine)!important;
+    
 }
 
 /* Background-color of the odd rows */
@@ -101,7 +98,7 @@ h1 {
 }
 
 .container td:first-child {
-    color: #FB667A;
+    color:var(--citrine);
     text-align: center;
 }
 
@@ -109,18 +106,26 @@ h1 {
     -webkit-box-shadow: 0 6px 6px -6px #0E1119;
     -moz-box-shadow: 0 6px 6px -6px #0E1119;
     box-shadow: 0 6px 6px -6px #0E1119;
+    overflow: visible;
+    object-fit: cover;
 }
 
 .container td:hover {
     background-color: #FFF842;
     color: #403E10;
-    font-weight: bold;
     box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
     transform: translate3d(6px, -6px, 0);
     transition-delay: 0s;
     transition-duration: 0.4s;
     transition-property: all;
     transition-timing-function: line;
+    overflow: visible;
+    object-fit: cover;
+}
+.stt-td{
+    margin: 0 !important;
+    padding: 0!important;
+    text-align: center;
 }
 
 @media (max-width: 800px) {
