@@ -7,7 +7,9 @@ import { RegisterValue } from 'Interface/register'
 import { AppDispatch, RootState } from 'configStore'
 import { useDispatch, useSelector } from 'react-redux'
 import { postRegisterUser } from 'Slices/register'
+import { postUserLogin } from 'Slices/auth'
 import { useNavigate } from 'react-router-dom'
+import { LoginValues } from "Interface/loginValue"
 
 import Swal from 'sweetalert2'
 
@@ -70,11 +72,6 @@ const Register = () => {
       if (result.isConfirmed) {
         dispatch(postRegisterUser(values));
 
-
-
-
-
-
       } else if (result.isDenied) {
         Swal.fire('Tài khoản chưa được đăng ký', '', 'info')
       }
@@ -85,11 +82,18 @@ const Register = () => {
 
   };
 
+
   if (RegisterValue) {
     if (getRegisterLocalstrage) {
       if (getRegisterLocalstrage.matKhau) {
+        const registed = {
+          taiKhoan: getRegisterLocalstrage.taiKhoan!,
+          matKhau: getRegisterLocalstrage.matKhau
+        }
+        dispatch(postUserLogin(registed));
         navigate("/");
         localStorage.removeItem("registerUser");
+
       }
     }
   }
@@ -107,7 +111,7 @@ const Register = () => {
 
                 <div className={styles.shape} />
               </div>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form className={styles['form-register']} onSubmit={handleSubmit(onSubmit)}>
                 <h3 >ĐĂNG KÝ</h3>
                 <div>
                   <label>Tài Khoản</label>
@@ -135,7 +139,7 @@ const Register = () => {
                   {errors.soDt && <span>{errors.soDt?.message}</span>}
                 </div>
                 <div className={styles["btn-gr"]}>
-                  <button className={styles.btnLogin}>Đăng ký</button>
+                  <button className={styles["btnRegister"]}>Đăng ký</button>
                 </div>
 
               </form>

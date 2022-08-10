@@ -40,7 +40,7 @@ body{
     right: -30px;
     bottom: -80px;
 }
-form{
+form.form-login{
     max-height: 580px;
     max-width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -58,7 +58,7 @@ form *{
     outline: none;
     border: none;
 }
-form h3{
+form.form-login h3{
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;

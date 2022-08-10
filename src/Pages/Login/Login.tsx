@@ -90,7 +90,7 @@ const Login = (props: Props) => {
                 <div className={styles.shape} />
                 <div className={styles.shape} />
               </div>
-              <form onSubmit={handleSubmit(onSubmit, onError)}>
+              <form className={styles['form-login']} onSubmit={handleSubmit(onSubmit, onError)}>
                 <h3>Đăng Nhập</h3>
                 <label htmlFor="username">Tài Khoản</label>
                 <input placeholder=" Tài Khoản"
