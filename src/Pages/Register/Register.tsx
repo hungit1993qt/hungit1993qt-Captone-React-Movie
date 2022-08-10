@@ -115,27 +115,27 @@ const Register = () => {
                 <h3 >ĐĂNG KÝ</h3>
                 <div>
                   <label>Tài Khoản</label>
-                  <input type="text" {...register("taiKhoan")} />
+                  <input className={styles["register"]} type="text" {...register("taiKhoan")} />
                   {errors.taiKhoan && <span>{errors.taiKhoan?.message}</span>}
                 </div>
                 <div>
                   <label>Mật Khẩu</label>
-                  <input type="password" {...register("matKhau")} />
+                  <input className={styles["register"]} type="password" {...register("matKhau")} />
                   {errors.matKhau && <span>{errors.matKhau?.message}</span>}
                 </div>
                 <div>
                   <label>Email</label>
-                  <input type="email" {...register("email")} />
+                  <input className={styles["register"]} type="email" {...register("email")} />
                   {errors.email && <span>{errors.email?.message}</span>}
                 </div>
                 <div>
                   <label>Họ Tên</label>
-                  <input type="text" {...register("hoTen")} />
+                  <input className={styles["register"]} type="text" {...register("hoTen")} />
                   {errors.hoTen && <span>{errors.hoTen?.message}</span>}
                 </div>
                 <div>
                   <label>Số Điện Thoại</label>
-                  <input type="text" {...register("soDt")} />
+                  <input className={styles["register"]} type="text" {...register("soDt")} />
                   {errors.soDt && <span>{errors.soDt?.message}</span>}
                 </div>
                 <div className={styles["btn-gr"]}>
