@@ -1802,7 +1802,7 @@ body.active {
         max-width: 1320px;
     }
 
-    form.form-login {
+    /* form.form-login {
         max-width: 350px;
         margin: auto;
         background: var(--white);
@@ -1829,7 +1829,7 @@ body.active {
         justify-content: space-between;
         align-items: center;
         margin-top: 20px;
-    }
+    } */
 
     /* MOVIE CARD */
 
