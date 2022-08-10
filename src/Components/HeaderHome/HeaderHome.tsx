@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 import React, { useState, useRef, useEffect } from 'react'
 import stylesHeader from 'Playground/SCSS/Header.module.scss'
 import { useOnClickOutside } from 'usehooks-ts'
+import { BackTop } from 'antd';
 type Props = {};
 
 
@@ -45,6 +46,7 @@ const HeaderHome = (props: Props) => {
   return (
     <header className="header active">
       <div className="container">
+      <BackTop />
         <div className="overlay" />
         <NavLink to="/" className={({ isActive }) => isActive ? "logo activeLink" : "logo"}>
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
@@ -60,7 +62,7 @@ const HeaderHome = (props: Props) => {
           </NavLink>
         </div>
         <button className={Active ? "menu-open-btn active" : "menu-open-btn"} ref={ref}
-          onClick={Active?handleClickOutside:handleClickInside} >
+          onClick={Active ? handleClickOutside : handleClickInside} >
           <span className="one" ></span>
           <span className="two" ></span>
           <span className="three" ></span>
@@ -145,6 +147,10 @@ const HeaderHome = (props: Props) => {
           </ul>
         </nav>
       </div>
+      
+      
+     
+      
     </header>
 
   );
