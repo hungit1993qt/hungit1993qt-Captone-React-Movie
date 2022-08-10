@@ -8,6 +8,7 @@ import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
 import styles from 'Playground/SCSS/MovieShowing.module.scss'
 import { Tabs } from "antd";
+import { PlayCircleOutlined } from '@ant-design/icons'; 
 
 
 
@@ -86,8 +87,10 @@ const MovieShowing = () => {
                   <li key={movie.maPhim}>
                     <div className="movie-card">
                       <button onClick={() => gotoDetail(movie.maPhim)}>
+                        
                         <figure className="card-banner">
                           <img src={movie.hinhAnh} alt={movie.tenPhim} />
+                          
                         </figure>
                       </button>
                       <div className="title-wrapper">

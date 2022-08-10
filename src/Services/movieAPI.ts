@@ -7,7 +7,7 @@ const movieAPI = {
     // Khai báo hàm call API dữ liệu trả về là Movie[]
     return axiosClient.get("QuanLyPhim/LayDanhSachPhimPhanTrang", {
       params: {
-        maNhom: "GP05 ",
+        maNhom: "GP03 ",
         soTrang: numberPgae,
         soPhanTuTrenTrang: 8,
       }

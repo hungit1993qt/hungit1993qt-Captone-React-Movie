@@ -5,7 +5,7 @@ import { User } from 'Interface/user'
 import Swal from 'sweetalert2'
 //tsrafce
 import { NavLink } from "react-router-dom";
-import React, {  useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import stylesHeader from 'Playground/SCSS/Header.module.scss'
 type Props = {};
 
@@ -22,19 +22,21 @@ const HeaderHome = (props: Props) => {
   const Login = () => {
 
   }
-
-
-
   const [Active, setActive] = useState(false);
+
+
+
+
+
   return (
     <header className="header active">
-      <div className="container">
-        <div className="overlay" />
+      <div onClick={() => setActive(!Active)} className="container">
+        <div onClick={() => setActive(!Active)} className="overlay" />
         <NavLink to="/" className={({ isActive }) => isActive ? "logo activeLink" : "logo"}>
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
         </NavLink>
         <div className="header-actions">
-        <NavLink to={"/booked"}><h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3></NavLink>
+          <NavLink to={"/booked"}><h3 className={stylesHeader['title-user']}>{auth ? auth.hoTen : ""}</h3></NavLink>
           <NavLink to={auth ? "/" : "login"}>
             <button
               onClick={() => { auth ? Logout() : Login() }}
@@ -89,7 +91,7 @@ const HeaderHome = (props: Props) => {
             <li className={stylesHeader["li-submenu"]}>
               <NavLink className="navbar-link" to={auth ? "/" : "login"}>
                 <button
-                 onClick={() => { auth ? Logout() : Login() }}
+                  onClick={() => { auth ? Logout() : Login() }}
                   className={stylesHeader["btn-submenu"]}
                 >
                   {getLocalStorage ? "LOG OUT" : "SIGN IN"}

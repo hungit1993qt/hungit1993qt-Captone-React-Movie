@@ -88,6 +88,7 @@ const MovieDetail = () => {
                     <figure className="movie-detail-banner">
                         <img src={hinhAnh} alt={tenPhim} />
                         <button onClick={() => showTrainer()} className="play-btn" >
+                            
                         </button>
                     </figure>
                     <div className="movie-detail-content">
@@ -120,7 +121,7 @@ const MovieDetail = () => {
                         </p>
                         <div className="details-actions">
 
-                            <button className="btn btn-primary" onClick={() => showTrainer()}><span>Xem Trainler</span></button>
+                            <button className="btn btn-primary" onClick={() => showTrainer()}><span>Xem Trailer</span></button>
 
                             <button onClick={() => setOpent(!opent)} className="btn btn-primary" >
                                 <span>Mua vé</span>
