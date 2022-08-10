@@ -30,8 +30,8 @@ const HeaderHome = (props: Props) => {
 
   return (
     <header className="header active">
-      <div onClick={() => setActive(!Active)} className="container">
-        <div onClick={() => setActive(!Active)} className="overlay" />
+      <div onClick={() => setActive(false)} className="container">
+        <div className="overlay" />
         <NavLink to="/" className={({ isActive }) => isActive ? "logo activeLink" : "logo"}>
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
         </NavLink>
