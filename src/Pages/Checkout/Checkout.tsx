@@ -11,10 +11,14 @@ import { SeatBookingSlice, DeleteBooking, DeleteAllBooking, postSeatBooking } fr
 import Swal from 'sweetalert2'
 import Loading from "Pages/Loading/Loading";
 import screen from "Playground/images/screen.png"
+import { useTimeout } from 'usehooks-ts'
+import CountDownTimer from './CountDownTimer'
 
 
 
 const Checkout = () => {
+  const { listSeatBooking, message } = useSelector(
+    (state: RootState) => state.listSeatBooking);
   const navigate = useNavigate();
   const { maLichChieu } = useParams();
   const dispatch = useDispatch<AppDispatch>();
@@ -24,11 +28,6 @@ const Checkout = () => {
   const { seatTicket, isLoading, error } = useSelector(
     (state: RootState) => state.seatTicket
   );
-  const { listSeatBooking, message } = useSelector(
-    (state: RootState) => state.listSeatBooking
-  );
-  //"selectSeat"  
-
   const handleSelect = (seatSelected: ListSeatBooking) => {
     dispatch(SeatBookingSlice(seatSelected));
 
@@ -94,6 +93,11 @@ const Checkout = () => {
     // TODO: Error component
     return <h1>{error}</h1>
   }
+  if (listSeatBooking.length > 0) {
+   const time =  setTimeout(() => {
+      dispatch(DeleteAllBooking());
+    }, 302000);
+  }
 
   return (
     <div>
@@ -116,7 +120,7 @@ const Checkout = () => {
 
                   <Fragment key={danhSachGhe.maGhe}>
                     <button onClick={() => handleSelect(danhSachGhe)} className={`btn-ticket ${danhSachGhe.loaiGhe} ${danhSachGhe.daDat} ${isSelected} `} disabled={danhSachGhe.daDat}>{danhSachGhe.daDat ? "X" : danhSachGhe.stt} </button>
-                   
+
                   </Fragment>
 
                 );
@@ -154,7 +158,7 @@ const Checkout = () => {
               <li>
                 <div className="service-card">
                   <div className="card-content">
-                    <h3 className="h3 card-title color-pay">DANH SÁCH GHẾ ĐÃ CHỌN</h3>
+                    <h3 className="h3 card-title color-pay">DANH SÁCH GHẾ ĐÃ CHỌN <h3 className="h3 card-title color-pay">Thời gian giữ ghế: <span className={stylesCheckout["cout-down"]}>{listSeatBooking.length>0 ? <CountDownTimer /> : " 05:00"}</span> </h3></h3>
                     <p className="card-text ">
                       {listSeatBooking.map((ghe) => {
                         return (
