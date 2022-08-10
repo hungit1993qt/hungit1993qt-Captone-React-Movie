@@ -10,6 +10,8 @@ import { useEffect } from 'react'
 import { User } from 'Interface/user'
 import Loading from 'Pages/Loading/Loading'
 import Swal from 'sweetalert2'
+import { Button, Modal } from 'antd';
+import React, { useState } from 'react';
 
 type Props = {};
 
