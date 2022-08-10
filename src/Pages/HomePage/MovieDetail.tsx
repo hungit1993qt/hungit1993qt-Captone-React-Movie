@@ -74,9 +74,9 @@ const MovieDetail = () => {
             title: `<strong>${tenPhim} Trainer</strong>`,
 
             html:
-                `<iframe width="auto" height="auto" src="https://www.youtube.com/embed/${idTrainer}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+                `<iframe width="100%" height="600px" src="https://www.youtube.com/embed/${idTrainer}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
 
-            
+            width:"100%",
             focusConfirm: false,
 
         })
