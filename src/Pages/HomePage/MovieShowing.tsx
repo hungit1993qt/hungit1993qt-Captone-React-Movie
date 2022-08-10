@@ -45,7 +45,8 @@ const MovieShowing = () => {
     // TODO: Error component
     return <h1>{error}</h1>
   }
-  const checkMobile = window.innerWidth <= 550
+  const checkMobile = window.innerWidth <= 450;
+  
   let stt = []
   for (let index = 1; index < movies.totalPages!; index++) {
     stt[index] = index;
