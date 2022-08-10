@@ -99,3 +99,8 @@
         color: black;
     }
 }
+.grip-film {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(3, auto);
+}

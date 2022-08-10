@@ -91,7 +91,7 @@
     margin: 0 20px;
     display: flex;
     gap: 5px;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 
 }
 
@@ -123,19 +123,34 @@
     display: flex;
     margin: 1px;
 }
-.title-start{
+
+.title-start {
     color: var(--citrine);
-    font-size: 25px;
+    font-size: 13px;
+    display: inline-block;
 }
-.content-showTime{
+
+.content-showTime {
     display: grid;
     gap: 10px;
-    grid-template-columns: repeat(2, auto);
-    
+    grid-template-columns: repeat(3, auto);
+
 }
-.timeshows{
+
+.title-img {
+    display: inline-block;
+}
+
+.title-cinma {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeshows {
     color: var(--citrine);
     border: 1px solid var(--citrine);
     font-size: 12px;
     padding: 5px;
 }
+

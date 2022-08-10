@@ -8,13 +8,15 @@ import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
 import styles from 'Playground/SCSS/MovieShowing.module.scss'
 import { Tabs } from "antd";
-import { PlayCircleOutlined } from '@ant-design/icons'; 
+import { PlayCircleOutlined } from '@ant-design/icons';
+import { useWindowSize } from 'usehooks-ts'
 
 
 
 const { TabPane } = Tabs;
 
 const MovieShowing = () => {
+  const { width, height } = useWindowSize()
   const navigate = useNavigate();
   const gotoDetail = (maPhim: number) => {
     navigate(`/movie-detail/${maPhim}`);
@@ -47,7 +49,7 @@ const MovieShowing = () => {
     return <h1>{error}</h1>
   }
   const checkMobile = window.innerWidth <= 450;
-  
+
   let stt = []
   for (let index = 1; index < movies.totalPages!; index++) {
     stt[index] = index;
@@ -56,7 +58,8 @@ const MovieShowing = () => {
   const checkLogin = (maLichChieuId: number) => {
     navigate(`/checkout/${maLichChieuId}`);
   }
-
+  const ismobile = width < 450 ? "" : "grip-film";
+  console.log(ismobile)
   return (
 
     <main>
@@ -87,10 +90,10 @@ const MovieShowing = () => {
                   <li key={movie.maPhim}>
                     <div className="movie-card">
                       <button onClick={() => gotoDetail(movie.maPhim)}>
-                        
+
                         <figure className="card-banner">
                           <img src={movie.hinhAnh} alt={movie.tenPhim} />
-                          
+
                         </figure>
                       </button>
                       <div className="title-wrapper">
@@ -172,14 +175,15 @@ const MovieShowing = () => {
                                           </div>
                                         </div>
                                       } key={ilcp}>
-                                        {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
-                                          if (indexlst < (checkMobile ? 12 : 18)) {
-                                            return (
-                                              <button key={lst.maLichChieu} style={{ margin: "auto", width: "100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1 className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
-                                            )
-                                          }
-
-                                        })}
+                                        <div className={styles[ismobile]}>
+                                          {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
+                                            if (indexlst < (checkMobile ? 12 : 25)) {
+                                              return (
+                                                <button key={lst.maLichChieu} style={{ margin: "auto", width: "100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1 className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
+                                              )
+                                            }
+                                          })}
+                                        </div>
                                       </TabPane>
 
                                     )

@@ -9,6 +9,8 @@ import { getMovieShowTime } from "Slices/showTime";
 import styleDetail from 'Playground/SCSS/movieDetails.module.scss'
 import Swal from 'sweetalert2';
 import { Tabs } from "antd";
+import { useWindowSize } from 'usehooks-ts'
+import { number } from "yup";
 
 
 
@@ -16,8 +18,7 @@ const { TabPane } = Tabs;
 
 
 const MovieDetail = () => {
-
-
+    const { width, height } = useWindowSize()
     const navigate = useNavigate();
     const checkLogin = (maLichChieuId: number) => {
         navigate(`/checkout/${maLichChieuId}`);
@@ -53,7 +54,8 @@ const MovieDetail = () => {
 
 
 
-
+    const setHight = width < 450 ? "300px" : "600px";
+    const listFilCinimax = width < 450 ? "top" : "left";
     Moment.locale('en');
     const time = showtimes.heThongRapChieu[0].cumRapChieu[0].lichChieuPhim[0].thoiLuong;
     const date = showtimes.ngayKhoiChieu;
@@ -74,9 +76,9 @@ const MovieDetail = () => {
             title: `<strong>${tenPhim} Trainer</strong>`,
 
             html:
-                `<iframe width="100%" height="600px" src="https://www.youtube.com/embed/${idTrainer}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+                `<iframe width="100%" height=${setHight} src="https://www.youtube.com/embed/${idTrainer}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
 
-            width:"100%",
+            width: "100%",
             focusConfirm: false,
 
         })
@@ -88,7 +90,7 @@ const MovieDetail = () => {
                     <figure className="movie-detail-banner">
                         <img src={hinhAnh} alt={tenPhim} />
                         <button onClick={() => showTrainer()} className="play-btn" >
-                            
+
                         </button>
                     </figure>
                     <div className="movie-detail-content">
@@ -134,25 +136,36 @@ const MovieDetail = () => {
                 <div className="container">
                     <h2 className="h2 section-title">LỊCH CHIẾU PHIM</h2>
                     <p className={styleDetail["showtime-subtitle"]}>" {tenPhim}"</p>
-                    <Tabs tabPosition={"top"}>
+                    <Tabs tabPosition={listFilCinimax}>
                         {showtimes.heThongRapChieu.map((heThongRapChieu, index) => {
                             return (
                                 <TabPane tab={<img src={heThongRapChieu.logo} width={50} height={50} />} key={index}>
-                                    {heThongRapChieu.cumRapChieu.map((cumRapChieu) => {
-                                        return (
-                                            <div key={cumRapChieu.maCumRap}>
-                                                <h1 className={styleDetail["title-start"]}>{cumRapChieu.tenCumRap} - {cumRapChieu.diaChi}</h1>
-                                                <div className={styleDetail["content-showTime"]}>
-                                                    {cumRapChieu.lichChieuPhim.map((lichChieuPhim, index) => {
-                                                        if (index < 6) {
-                                                            return <button key={lichChieuPhim.maLichChieu} onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm A')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
-                                                        }
+                                    <Tabs tabPosition={listFilCinimax}>
+                                        {heThongRapChieu.cumRapChieu.map((cumRapChieu, idx) => {
+                                            return (
+                                                <TabPane tab={
+                                                    <div className={styleDetail["title-cinma"]}> <img className={styleDetail["title-img"]} src={heThongRapChieu.logo} width={50} height={50} />
+                                                        <h1 className={styleDetail["title-start"]}>{cumRapChieu.tenCumRap} <br /> {cumRapChieu.diaChi}</h1>
+                                                    </div>} key={idx}>
+                                                    <div key={cumRapChieu.maCumRap}>
+                                                        <div className={styleDetail["content-showTime"]}>
+                                                            {cumRapChieu.lichChieuPhim.map((lichChieuPhim, index) => {
+                                                                if (index < 6) {
+                                                                    return (
+                                                                        <button key={lichChieuPhim.maLichChieu} onClick={() => checkLogin(lichChieuPhim.maLichChieu)} className={styleDetail["timeshows"]}>{Moment(lichChieuPhim.ngayChieuGioChieu).format(' HH : mm A')}<br />{Moment(lichChieuPhim.ngayChieuGioChieu).format('DD-MM-YYYY')}</button>
+                                                                    )
+                                                                }
 
-                                                    })}
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
+                                                            })}
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+                                                </TabPane>)
+                                        })}</Tabs>
                                 </TabPane>
                             )
                         })}
