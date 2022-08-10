@@ -12,6 +12,7 @@ import { Tabs } from "antd";
 
 
 const { TabPane } = Tabs;
+
 const MovieShowing = () => {
   const navigate = useNavigate();
   const gotoDetail = (maPhim: number) => {
@@ -44,6 +45,7 @@ const MovieShowing = () => {
     // TODO: Error component
     return <h1>{error}</h1>
   }
+  const checkMobile = window.innerWidth <= 550
   let stt = []
   for (let index = 1; index < movies.totalPages!; index++) {
     stt[index] = index;
@@ -52,7 +54,6 @@ const MovieShowing = () => {
   const checkLogin = (maLichChieuId: number) => {
     navigate(`/checkout/${maLichChieuId}`);
   }
-
 
   return (
 
@@ -95,7 +96,7 @@ const MovieShowing = () => {
                       </div>
                       <div className="card-meta">
                         <div className="badge badge-outline">{Moment(date).format('DD-MM-YYYY')}</div>
-                        
+
                         <div className="rating">
 
                           <data className="badge badge-outline">Rank({movie.danhGia}*)</data>
@@ -153,7 +154,7 @@ const MovieShowing = () => {
                                   if (ilcp < 5) {
                                     return (
 
-                                      <TabPane  tab={
+                                      <TabPane tab={
                                         <div key={lichChieuPhim.maPhim} className={styles["card-film"]}>
                                           <img src={lichChieuPhim.hinhAnh!} width={50} height={50} />
                                           <div className={styles["card-detail-film"]}>
@@ -168,9 +169,9 @@ const MovieShowing = () => {
                                         </div>
                                       } key={ilcp}>
                                         {lichChieuPhim.lstLichChieuTheoPhim.map((lst, indexlst) => {
-                                          if (indexlst < 15) {
+                                          if (indexlst < (checkMobile ? 12 : 18)) {
                                             return (
-                                              <button key={lst.maLichChieu} style={{ margin: "auto", width:"100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1  className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
+                                              <button key={lst.maLichChieu} style={{ margin: "auto", width: "100%" }} onClick={() => checkLogin(lst.maLichChieu!)}><h1 className={styles["h1Showtime"]}> {Moment(lst.ngayChieuGioChieu).format('hh:mmA')}-{Moment(lst.ngayChieuGioChieu).format('DD/MM/YYYY')} - {lst.giaVe?.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h1></button>
                                             )
                                           }
 
