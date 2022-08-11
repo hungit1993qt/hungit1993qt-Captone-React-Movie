@@ -25,7 +25,7 @@ const FooterHome = (props: Props) => {
         <div className="container">
           <div className="footer-brand-wrapper">
             <a href="./index.html" className="logo">
-              <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
+              <img className='imgLogo' src="../../logo.svg" alt="Filmlane logo" />
             </a>
             <ul className="footer-list">
               <li>

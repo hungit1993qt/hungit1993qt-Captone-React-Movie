@@ -112,12 +112,7 @@ input {
     border: none;
 }
 
-img.imgLogo {
-    width: 120px !important;
-    background: var(--citrine);
-    border-radius: 300px;
 
-}
 
 select,
 button {

@@ -62,17 +62,15 @@ const MovieShowing = () => {
             </h2>
 
             <ul className="filter-list">
+              
               <li>
-                <button className="filter-btn">Movies</button>
+                <button className="filter-btn">HOT</button>
               </li>
               <li>
-                <button className="filter-btn">TV Shows</button>
+                <button className="filter-btn">Đang chiếu</button>
               </li>
               <li>
-                <button className="filter-btn">Documentary</button>
-              </li>
-              <li>
-                <button className="filter-btn">Sports</button>
+                <button className="filter-btn">Sắp chiếu</button>
               </li>
             </ul>
             <ul className="movies-list">

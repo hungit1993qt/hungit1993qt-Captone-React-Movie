@@ -55,7 +55,7 @@ const HeaderHome = (props: Props) => {
           to="/"
           className={({ isActive }) => (isActive ? "logo activeLink" : "logo")}
         >
-          <img className="imgLogo" src="../../logo.png" alt="Filmlane logo" />
+          <img className="imgLogo" src="../../logo.svg" alt="Filmlane logo" />
         </NavLink>
         <div className="header-actions">
           <button className="search-btn">
@@ -131,23 +131,37 @@ const HeaderHome = (props: Props) => {
                 </h3>
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink to={"/"} className={({ isActive }) =>
-                isActive ? "navbar-link activeLink" : "navbar-link"
-              }>Home</NavLink>
-            </li> */}
+            <li>
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  isActive ? "navbar-link activeLink" : "navbar-link"
+                }
+              >
+                Home
+              </NavLink>
+            </li>
 
-            {/* <li>
-              <NavLink className={({ isActive }) =>
-                isActive ? "navbar-link activeLink" : "navbar-link"
-              }
-                to={"about"}>About</NavLink>
-            </li> */}
-            {/* <li>
-              <NavLink to={"contact"} className={({ isActive }) =>
-                isActive ? "navbar-link activeLink" : "navbar-link"
-              }>Contact</NavLink>
-            </li> */}
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "navbar-link activeLink" : "navbar-link"
+                }
+                to={"about"}
+              >
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"contact"}
+                className={({ isActive }) =>
+                  isActive ? "navbar-link activeLink" : "navbar-link"
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
 
             <li className={stylesHeader["li-submenu"]}>
               <NavLink className="navbar-link" to={auth ? "/" : "login"}>
