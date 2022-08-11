@@ -4,6 +4,7 @@ import "./Playground/css/index.css"
 //setup redux
 import store from "./configStore";
 import 'antd/dist/antd.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 import App from "./App";

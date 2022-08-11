@@ -1066,8 +1066,7 @@ body.active {
     font-weight: var(--fw-500);
     line-height: 1.7;
     text-align: center;
-    margin:  auto;
-    display: block;
+    
 }
 
 .copyright>a {

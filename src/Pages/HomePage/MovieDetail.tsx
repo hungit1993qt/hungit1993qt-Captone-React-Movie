@@ -78,7 +78,9 @@ const MovieDetail = () => {
         <div className="container">
           <figure className="movie-detail-banner">
             <img src={hinhAnh} alt={tenPhim} />
-            <button onClick={() => showTrainer()} className="play-btn"></button>
+            <button onClick={() => showTrainer()} className="play-btn">
+              <i className="fa fa-play-circle"></i>
+            </button>
           </figure>
           <div className="movie-detail-content">
             <p className="detail-subtitle">{biDanh}</p>
