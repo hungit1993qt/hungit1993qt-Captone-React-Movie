@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, createElement } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "configStore";
 import { getMovieDetails } from "Slices/movieDetail";
@@ -10,11 +10,55 @@ import styleDetail from "Playground/SCSS/movieDetails.module.scss";
 import Swal from "sweetalert2";
 import { Tabs } from "antd";
 import { useWindowSize } from "usehooks-ts";
-import { number } from "yup";
+import moment from "moment";
+import {
+  DislikeFilled,
+  DislikeOutlined,
+  LikeFilled,
+  LikeOutlined,
+} from "@ant-design/icons";
+import { Avatar, Comment, Tooltip } from "antd";
 
 const { TabPane } = Tabs;
 
 const MovieDetail = () => {
+  //comment
+  const [likes, setLikes] = useState(0);
+  const [dislikes, setDislikes] = useState(0);
+  const [actionComment, setActionComment] = useState(null);
+
+  
+  const like = () => {
+    setLikes(1);
+    setDislikes(0);
+    setAction('liked');
+  };
+
+  const dislike = () => {
+    setLikes(0);
+    setDislikes(1);
+    setAction('disliked');
+  };
+
+  const actions = [
+    <Tooltip key="comment-basic-like" title="Like">
+      <span onClick={like}>
+        {createElement(actionComment === 'liked' ? LikeFilled : LikeOutlined)}
+        <span className="comment-action">{likes}</span>
+      </span>
+    </Tooltip>,
+    <Tooltip key="comment-basic-dislike" title="Dislike">
+      <span onClick={dislike}>
+        {React.createElement(actionComment === 'disliked' ? DislikeFilled : DislikeOutlined)}
+        <span className="comment-action">{dislikes}</span>
+      </span>
+    </Tooltip>,
+    <span key="comment-basic-reply-to">Reply to</span>,
+  ];
+
+  
+
+  const [action, setAction] = useState<string | null>(null);
   const { width, height } = useWindowSize();
   const navigate = useNavigate();
   const checkLogin = (maLichChieuId: number) => {
@@ -26,6 +70,9 @@ const MovieDetail = () => {
   const { maPhim } = useParams();
   const { movies, isLoading, error } = useSelector(
     (state: RootState) => state.detail
+  );
+  const { auth} = useSelector(
+    (state: RootState) => state.auth
   );
   const { showtimes } = useSelector((state: RootState) => state.showtime);
   const dispatch = useDispatch<AppDispatch>();
@@ -100,9 +147,11 @@ const MovieDetail = () => {
               </div>
               <div className="date-time">
                 <div>
+                  <i className="fa fa-calendar"></i>
                   <time>{Moment(date).format("DD-MM-YYYY")}</time>
                 </div>
                 <div>
+                  <i className="fa fa-clock"></i>
                   <time>{time}p</time>
                 </div>
               </div>
@@ -198,6 +247,23 @@ const MovieDetail = () => {
           </Tabs>
         </div>
       </section>
+      <Comment
+        actions={actions}
+        author={<a> Nguyễn Văn Khánh</a>}
+        avatar={
+          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
+        }
+        content={
+          <p>
+            Phim rất hay, nhiều tình tiết bất ngờ......
+          </p>
+        }
+        datetime={
+          <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+            <span>{moment().fromNow()}</span>
+          </Tooltip>
+        }
+      />
     </div>
   );
 };

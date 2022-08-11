@@ -58,21 +58,8 @@ const HeaderHome = (props: Props) => {
           <img className="imgLogo" src="../../logo.svg" alt="Filmlane logo" />
         </NavLink>
         <div className="header-actions">
-          <button className="search-btn">
-            <i className="fa fa-search"></i>
-          </button>
-          <div className="lang-wrapper">
-            <label htmlFor="language">
-              <i className="fa fa-globe"></i>
-            </label>
-
-            <select name="language" id="language">
-              <option value="en">EN</option>
-              <option value="au">AU</option>
-              <option value="ar">AR</option>
-              <option value="tu">TU</option>
-            </select>
-          </div>
+          
+          
 
           <NavLink to={"/booked"}>
             <h3 className={stylesHeader["title-user"]}>
@@ -86,7 +73,7 @@ const HeaderHome = (props: Props) => {
               }}
               className="btn btn-primary"
             >
-              {getLocalStorage ? "LOG OUT" : "SIGN IN"}
+              {getLocalStorage ? "Log out" : "Sign in"}
             </button>
           </NavLink>
         </div>
@@ -104,7 +91,7 @@ const HeaderHome = (props: Props) => {
             <NavLink to="/" className="logo">
               <img
                 className="imgLogo"
-                src="../../logo.png"
+                src="../../logo.svg"
                 alt="Filmlane logo"
               />
             </NavLink>
@@ -171,7 +158,7 @@ const HeaderHome = (props: Props) => {
                   }}
                   className={stylesHeader["btn-submenu"]}
                 >
-                  {getLocalStorage ? "LOG OUT" : "SIGN IN"}
+                  {getLocalStorage ? "Log out" : "Sign in"}
                 </button>
               </NavLink>
             </li>
@@ -180,27 +167,27 @@ const HeaderHome = (props: Props) => {
           <ul className="navbar-social-list">
             <li>
               <a href="#" className="navbar-social-link">
-                {/* <ion-icon className="logo-twitter" /> */}
+              <i className="fab fa-twitter-square"></i>
               </a>
             </li>
             <li>
               <a href="#" className="navbar-social-link">
-                {/* <ion-icon className="logo-facebook" /> */}
+              <i className="fab fa-facebook-square"></i>
               </a>
             </li>
             <li>
               <a href="#" className="navbar-social-link">
-                {/* <ion-icon className="logo-pinterest" /> */}
+              <i className="fab fa-pinterest-p"></i>
               </a>
             </li>
             <li>
               <a href="#" className="navbar-social-link">
-                {/* <ion-icon className="logo-instagram" /> */}
+              <i className="fab fa-instagram"></i>
               </a>
             </li>
             <li>
               <a href="#" className="navbar-social-link">
-                {/* <ion-icon className="logo-youtube" /> */}
+              <i className="fab fa-youtube"></i>
               </a>
             </li>
           </ul>
