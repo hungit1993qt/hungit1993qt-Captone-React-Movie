@@ -5,6 +5,7 @@ import HomeTemplate from "./Templates/HomeTemplate";
 import ProtectedRoute from "Routes/ProtectedRoute";
 import GlobalStyles from "./GlobalStyles";
 import Loading from "Pages/Loading/Loading";
+import LoadingComponent from "Pages/Loading/LoadingComponent";
 
 // Khi import trực tiếp như thế này thì mặc định sẽ được tải về khi ứng dụng khởi chạy
 // import HomePage from "./Pages/HomePage/HomePage";
@@ -29,9 +30,9 @@ function App() {
   return (
     <ErrorBoundary>
       {/* Suspense dùng để hiện thị ra fallback UI khi component đang được load */}
-      <Suspense fallback = {<Loading />}>
-        
-        <BrowserRouter >
+      <Suspense fallback={<LoadingComponent />}>
+        <Loading />
+        <BrowserRouter>
           <Routes>
             <Route path="" element={<HomeTemplate />}>
               <Route path="contact" element={<Contact />} />
