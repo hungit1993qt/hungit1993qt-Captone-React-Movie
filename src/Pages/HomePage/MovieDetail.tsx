@@ -38,12 +38,7 @@ const MovieDetail = () => {
         dispatch(getMovieDetails(+maPhim!));
         dispatch(getMovieShowTime(+maPhim!))
     }, []);
-    if (isLoading) {
-        // TODO: Loading component
-        return (
-            <Loading />
-        );
-    }
+    
 
 
     if (error) {

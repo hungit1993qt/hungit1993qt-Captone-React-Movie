@@ -10,6 +10,7 @@ import RegisterValue from './Slices/register'
 import inforBooked from './Slices/inforBooked'
 import banner from './Slices/getBanner'
 import cinimax from './Slices/cinimax'
+import isLoading from './Slices/isLoading'
 
 
 
@@ -26,7 +27,8 @@ const store = configureStore({
     RegisterValue,
     inforBooked,
     banner,
-    cinimax
+    cinimax,
+    isLoading,
   },
 });
 

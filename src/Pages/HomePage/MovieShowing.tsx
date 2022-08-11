@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "configStore";
 import { getMovieShowing } from "Slices/movie";
@@ -7,9 +7,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import Moment from 'moment';
 import Loading from "Pages/Loading/Loading";
 import styles from 'Playground/SCSS/MovieShowing.module.scss'
-import { Tabs } from "antd";
+import { Tabs, } from "antd";
 import { PlayCircleOutlined } from '@ant-design/icons';
 import { useWindowSize } from 'usehooks-ts'
+import { showLoading, hideLoading } from 'Slices/isLoading'
+
 
 
 
@@ -24,6 +26,7 @@ const MovieShowing = () => {
   const { movies, isLoading, error } = useSelector(
     (state: RootState) => state.movie
   );
+
   const { cinimax, } = useSelector(
     (state: RootState) => state.cinimax
   );
@@ -37,12 +40,7 @@ const MovieShowing = () => {
     dispatch(getMovieShowing(number));
   }
 
-  if (isLoading) {
-    // TODO: Loading component
-    return (
-      <Loading />
-    );
-  }
+  
 
   if (error) {
     // TODO: Error component
@@ -59,7 +57,7 @@ const MovieShowing = () => {
     navigate(`/checkout/${maLichChieuId}`);
   }
   const ismobile = width < 450 ? "" : "grip-film";
-  console.log(ismobile)
+
   return (
 
     <main>
@@ -67,7 +65,9 @@ const MovieShowing = () => {
         <section className="top-rated">
           <div className="container">
 
-            <h2 className="h2 section-title">DANH SÁCH PHIM</h2>
+            <h2 className={`${styles["h2"]} ${styles["section-title"]}`}>DANH SÁCH PHIM</h2>
+
+
             <ul className="filter-list">
               <li >
                 <button className="filter-btn">Movies</button>

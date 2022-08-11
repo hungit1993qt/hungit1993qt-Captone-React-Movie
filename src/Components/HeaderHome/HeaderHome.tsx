@@ -28,13 +28,13 @@ const HeaderHome = (props: Props) => {
 
   const ref = useRef(null)
   const handleClickOutside = () => {
-    console.log('clicked outside')
+    // console.log('clicked outside')
     setActive(false)
   }
 
   const handleClickInside = () => {
     // Your custom logic here
-    console.log('clicked inside')
+    // console.log('clicked inside')
     setActive(true)
 
   }

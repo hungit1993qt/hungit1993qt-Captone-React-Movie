@@ -29,8 +29,9 @@ function App() {
   return (
     <ErrorBoundary>
       {/* Suspense dùng để hiện thị ra fallback UI khi component đang được load */}
-      <Suspense fallback={<div><Loading /></div>}>
-        <BrowserRouter>
+      <Suspense fallback = {<Loading />}>
+        
+        <BrowserRouter >
           <Routes>
             <Route path="" element={<HomeTemplate />}>
               <Route path="contact" element={<Contact />} />
