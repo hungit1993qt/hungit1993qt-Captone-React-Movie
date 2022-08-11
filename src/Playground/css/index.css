@@ -114,6 +114,8 @@ input {
 
 img.imgLogo {
     width: 120px !important;
+    background: var(--citrine);
+    border-radius: 300px;
 
 }
 
@@ -274,7 +276,7 @@ body.active {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 16px 30px;
+    padding: 6px 30px;
     border: 2px solid var(--citrine);
     border-radius: 50px;
     transition: var(--transition-1);
@@ -285,7 +287,7 @@ body.active {
 }
 
 .btn-primary {
-    background: var(--rich-black-fogra-29);
+    
 }
 
 .btn-primary:is(:hover, :focus) {
@@ -1055,7 +1057,7 @@ body.active {
 }
 
 .footer-bottom {
-    padding-block: 25px;
+    padding-block: 15px;
 }
 
 .copyright {
@@ -1064,7 +1066,8 @@ body.active {
     font-weight: var(--fw-500);
     line-height: 1.7;
     text-align: center;
-    margin-bottom: 15px;
+    margin:  auto;
+    display: block;
 }
 
 .copyright>a {
@@ -1102,6 +1105,7 @@ body.active {
     visibility: hidden;
     transition: var(--transition-2);
     z-index: 2;
+    font-weight: bold;
 }
 
 .go-top.active {
@@ -1823,7 +1827,7 @@ body.active {
     .header-actions .btn-primary {
         display: block;
         --fs-11: 14px;
-        padding: 10px 35px;
+        padding: 6px 30px;
         letter-spacing: 1px;
     }
 

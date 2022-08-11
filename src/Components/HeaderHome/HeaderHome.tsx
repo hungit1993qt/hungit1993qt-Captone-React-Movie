@@ -8,11 +8,22 @@ import { NavLink } from "react-router-dom";
 import React, { useState, useRef, useEffect } from 'react'
 import stylesHeader from 'Playground/SCSS/Header.module.scss'
 import { useOnClickOutside } from 'usehooks-ts'
-import { BackTop } from 'antd';
 type Props = {};
 
 
 const HeaderHome = (props: Props) => {
+const [onscrolled,setOnscrolled] = useState(false)
+
+useEffect(()=>{
+  const onscroll = ()=>{
+    if(window.scrollY >10){
+      setOnscrolled(true)
+    }else{
+      setOnscrolled(false)
+    }
+  };
+  window.addEventListener("scroll",onscroll);
+},[]);
   const { auth } = useSelector(
     (state: RootState) => state.auth
   );
@@ -44,9 +55,9 @@ const HeaderHome = (props: Props) => {
 
 
   return (
-    <header className="header active">
+    <header className={onscrolled?`header active `: `header `}>
       <div className="container">
-      <BackTop />
+      
         <div className="overlay" />
         <NavLink to="/" className={({ isActive }) => isActive ? "logo activeLink" : "logo"}>
           <img className='imgLogo' src="../../logo.png" alt="Filmlane logo" />
