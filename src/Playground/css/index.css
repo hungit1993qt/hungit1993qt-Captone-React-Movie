@@ -217,7 +217,9 @@ body.active {
     gap: 15px 25px;
     margin-bottom: 50px;
 }
-
+.ant-rate-text{
+    color: var(--white);
+}
 .badge-wrapper,
 .ganre-wrapper,
 .date-time {
