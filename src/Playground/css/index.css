@@ -1124,7 +1124,9 @@ body.active {
     padding-top: 160px;
     padding-bottom: 10px;
 }
-
+.comment-action{
+    color: var(--citrine) !important;
+}
 .movie-detail-banner {
     position: relative;
     background: var(--gunmetal-1);

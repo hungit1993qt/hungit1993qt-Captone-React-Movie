@@ -40,21 +40,35 @@ const MovieDetail = () => {
   };
 
   const actions = [
-    <Tooltip key="comment-basic-like" title="Like">
-      <span onClick={like}>
+    <Tooltip
+      style={{ color: "var(--citrine)" }}
+      key="comment-basic-like"
+      title="Like"
+    >
+      <span style={{ color: "var(--citrine)" }} onClick={like}>
         {createElement(actionComment === "liked" ? LikeFilled : LikeOutlined)}
-        <span className="comment-action">{likes}</span>
+        <span style={{ color: "var(--citrine)" }} className="comment-action">
+          {likes}
+        </span>
       </span>
     </Tooltip>,
-    <Tooltip key="comment-basic-dislike" title="Dislike">
-      <span onClick={dislike}>
+    <Tooltip
+      style={{ color: "var(--citrine)" }}
+      key="comment-basic-dislike"
+      title="Dislike"
+    >
+      <span style={{ color: "var(--citrine)" }} onClick={dislike}>
         {React.createElement(
           actionComment === "disliked" ? DislikeFilled : DislikeOutlined
         )}
-        <span className="comment-action">{dislikes}</span>
+        <span style={{ color: "var(--citrine)" }} className="comment-action">
+          {dislikes}
+        </span>
       </span>
     </Tooltip>,
-    <span key="comment-basic-reply-to">Reply to</span>,
+    <span style={{ color: "var(--citrine)" }} key="comment-basic-reply-to">
+      Reply to
+    </span>,
   ];
   const [value, setValue] = useState(3);
   const [action, setAction] = useState<string | null>(null);
@@ -244,25 +258,53 @@ const MovieDetail = () => {
           </Tabs>
         </div>
       </section>
-      <Comment
-        style={{ background: "var(--citrine)", padding: 15 }}
-        actions={actions}
-        author={<a> Nguyễn Văn Khánh</a>}
-        avatar={
-          <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />
-        }
-        content={<p>Phim rất hay, nhiều tình tiết bất ngờ......</p>}
-        datetime={
-          <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
-            <span style={{ color: "#000" }}>{moment().fromNow()}</span>
-          </Tooltip>
-        }        
-      />
-      <span style={{paddingLeft:15,lineHeight:1}}>
-        <Rate   tooltips={desc} onChange={setValue} value={value} />
-        {value ? <span style={{ color: "var(--citrine)" }} className="ant-rate-text">{desc[value - 1]}</span> : ""}
-      </span>
-      
+      <section className={styleDetail["movie-detail-comment"]}>
+        <div className="container">
+          <div className="list-comment">
+            <div className="item-comment">
+              <Comment
+                style={{
+                  background: "none",
+                  padding: 15,
+                  color: "var(--citrine)",
+                }}
+                actions={actions}
+                author={
+                  <a style={{ color: "var(--citrine)" }}> Nguyễn Văn Khánh</a>
+                }
+                avatar={
+                  <Avatar
+                    src="https://joeschmoe.io/api/v1/random"
+                    alt="Nguyễn Văn Khánh"
+                  />
+                }
+                content={<p>Phim rất hay, nhiều tình tiết bất ngờ......</p>}
+                datetime={
+                  <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+                    <span style={{ color: "var(--citrine)" }}>
+                      {moment().fromNow()}
+                    </span>
+                  </Tooltip>
+                }
+              />
+              <span style={{ paddingLeft: 15, lineHeight: 1 }}>
+                <Rate tooltips={desc} onChange={setValue} value={value} />
+                {value ? (
+                  <span
+                    style={{ color: "var(--citrine)" }}
+                    className="ant-rate-text"
+                  >
+                    {desc[value - 1]}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </span>
+            </div>
+            
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
