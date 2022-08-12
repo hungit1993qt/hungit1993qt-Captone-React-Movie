@@ -305,6 +305,53 @@ const MovieDetail = () => {
           </div>
         </div>
       </section>
+      <section className={styleDetail["movie-detail-comment"]}>
+        <div className="container">
+          <div className="list-comment">
+            <div className="item-comment">
+              <Comment
+                style={{
+                  background: "none",
+                  padding: 15,
+                  color: "var(--citrine)",
+                }}
+                actions={actions}
+                author={
+                  <a style={{ color: "var(--citrine)" }}> Trần Khả Như</a>
+                }
+                avatar={
+                  <Avatar
+                    src="Playground/images/service-banner.jpg"
+                    alt="Nguyễn Văn Khánh"
+                  />
+                }
+                content={<p>Phim rất hay, nhiều tình tiết bất ngờ......</p>}
+                datetime={
+                  <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+                    <span style={{ color: "var(--citrine)" }}>
+                      {moment().fromNow(true)}
+                    </span>
+                  </Tooltip>
+                }
+              />
+              <span style={{ paddingLeft: 15, lineHeight: 1 }}>
+                <Rate tooltips={desc} onChange={setValue} value={value} />
+                {value ? (
+                  <span
+                    style={{ color: "var(--citrine)" }}
+                    className="ant-rate-text"
+                  >
+                    {desc[value - 1]}
+                  </span>
+                ) : (
+                  ""
+                )}
+              </span>
+            </div>
+            
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
