@@ -10,12 +10,14 @@ import styles from "Playground/SCSS/MovieShowing.module.scss";
 import { Tabs } from "antd";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import { useWindowSize } from "usehooks-ts";
+import ItemMovie from "./ItemMovie";
 
 const { TabPane } = Tabs;
 
 const MovieShowing = () => {
   const { width, height } = useWindowSize();
   const navigate = useNavigate();
+  const [statusMovie, setStatusMovie] = useState("");
   const gotoDetail = (maPhim: number) => {
     navigate(`/movie-detail/${maPhim}`);
   };
@@ -47,6 +49,7 @@ const MovieShowing = () => {
   for (let index = 1; index < movies.totalPages!; index++) {
     stt[index] = index;
   }
+  const pageCurent = movies.currentPage;
   const checkLogin = (maLichChieuId: number) => {
     navigate(`/checkout/${maLichChieuId}`);
   };
@@ -62,63 +65,78 @@ const MovieShowing = () => {
             </h2>
 
             <ul className="filter-list">
-              
               <li>
-                <button className="filter-btn">HOT</button>
+                <button
+                  onClick={() => setStatusMovie("")}
+                  className="filter-btn"
+                >
+                  Tất cả
+                </button>
               </li>
               <li>
-                <button className="filter-btn">Đang chiếu</button>
+                <button
+                  onClick={() => setStatusMovie("hot")}
+                  className="filter-btn"
+                >
+                  HOT
+                </button>
               </li>
               <li>
-                <button className="filter-btn">Sắp chiếu</button>
+                <button
+                  onClick={() => setStatusMovie("dangChieu")}
+                  className="filter-btn"
+                >
+                  Đang chiếu
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => setStatusMovie("sapChieu")}
+                  className="filter-btn"
+                >
+                  Sắp chiếu
+                </button>
               </li>
             </ul>
             <ul className="movies-list">
-              {movies.items.map((movie: any) => {
-                Moment.locale("en");
-                const date = movie.ngayKhoiChieu;
-                return (
-                  <li key={movie.maPhim}>
-                    <div className="movie-card">
-                      <button onClick={() => gotoDetail(movie.maPhim)}>
-                        <figure className="card-banner">
-                          <img src={movie.hinhAnh} alt={movie.tenPhim} />
-                        </figure>
-                      </button>
-                      <div className="title-wrapper">
-                        <button onClick={() => gotoDetail(movie.maPhim)}>
-                          <h3 className="card-title">{movie.tenPhim}</h3>
-                        </button>
-                      </div>
-                      <div className="card-meta">
-                        <div className="badge badge-outline">
-                          {Moment(date).format("DD-MM-YYYY")}
-                        </div>
-
-                        <div className="rating">
-                          <data className="badge badge-outline">
-                            Rank({movie.danhGia}*)
-                          </data>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                );
+              {movies.items.map((movie: any, index) => {
+               
+                if (statusMovie === "hot") {
+                  if (movie.hot) {
+                    return <ItemMovie key={index} {...movie} />;
+                  }
+                } else if (statusMovie === "dangChieu") {
+                  if (movie.dangChieu) {
+                    return <ItemMovie key={index} {...movie} />;
+                  }
+                } else if (statusMovie === "sapChieu") {
+                  if (movie.sapChieu) {
+                    return <ItemMovie key={index} {...movie} />;
+                  }
+                } else {
+                  return <ItemMovie key={index} {...movie} />;
+                }
               })}
             </ul>
+
             <ul className={styles["ul-page"]}>
-              {stt.map((PageNumber, index) => {
-                return (
-                  <li key={PageNumber} className={styles["li-page"]}>
-                    {" "}
-                    <button
-                      className={styles["btn-page"]}
-                      onClick={() => ShowItemByNumber(PageNumber)}
-                    >
-                      {PageNumber}
-                    </button>
-                  </li>
-                );
+              {stt.map((PageNumber) => {
+                if (statusMovie === "") {
+                  return (
+                    <li key={PageNumber} className={styles["li-page"]}>
+                      <button
+                        className={
+                          pageCurent === PageNumber
+                            ? `${styles["btn-page"]} ${styles["btn-page-active"]}`
+                            : styles["btn-page"]
+                        }
+                        onClick={() => ShowItemByNumber(PageNumber)}
+                      >
+                        {PageNumber}
+                      </button>
+                    </li>
+                  );
+                }
               })}
             </ul>
           </div>
@@ -277,7 +295,7 @@ const MovieShowing = () => {
               Vui lòng điền thông tin email để hoàn tất tiến trình.
             </p>
           </div>
-          <form  className="cta-form">
+          <form className="cta-form">
             <input
               type="email"
               name="email"
